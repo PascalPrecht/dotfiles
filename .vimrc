@@ -1,9 +1,16 @@
-"test
+" Use the better one!
+set nocompatible
+
+" Change mapleader
 let mapleader = ','
 
+" Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
+
+" And resource it as fast as light
 nnoremap  <leader>sv :source $MYVIMRC<cr>
 
+" Disabling arrow keys in normal and insert mode
 noremap   <up> <nop>
 noremap   <down> <nop>
 noremap   <left> <nop>
@@ -12,15 +19,17 @@ inoremap  <up> <nop>
 inoremap  <down> <nop>
 inoremap  <left> <nop>
 inoremap  <right> <nop>
+
+" Also disabling escape key. It's too far away!
 inoremap  <esc> <nop>
 
+" 'jk' is much better :)
 inoremap  jk <esc>
+
+" Fast saving
 nnoremap <leader>w :w!<cr>
 
 
-" Sets compatibility mode
- set nocompatible
- 
  " Sets how many lines of history VIM has to remember
  set history=700
 
