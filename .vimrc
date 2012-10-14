@@ -1,8 +1,8 @@
-" Use the better one!
-set nocompatible
+set nocompatible " Don't care about Vi-compatibility
+set history=1000 " Remember ALL THE commands!
+set autoread " Autoread a file when it's changed from outside
 
-" Change mapleader
-let mapleader = ','
+let mapleader = ',' " Change mapleader
 
 " Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
@@ -29,31 +29,9 @@ inoremap  jk <esc>
 " Fast saving
 nnoremap <leader>w :w!<cr>
 
+set lines=999 " Open the tallest window possible
+set columns=9999 " Open the widest window possible
 
- " Sets how many lines of history VIM has to remember
- set history=700
-
- " Enable filetype plugin
- filetype plugin on
- filetype indent on
-
- " Set to auto read when a file is changed from the outside
- set autoread
-
- " Fast saving
-" nmap <leader>w :w!<cr>
-
-"if has("gui_running")
-  "set fuoptions=maxvert,maxhorz
-  "au GUIEnter * set fullscreen
-"endif
-
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- "	=> User interface
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
- set lines=500 
-
- set columns=162
 
  " Turn on Wild menu
  set wildmenu
@@ -151,3 +129,6 @@ augroup trailing
 augroup END
 
 nnoremap <F3> :NumbersToggle<CR>
+ " Enable filetype plugin
+ filetype plugin on
+ filetype indent on

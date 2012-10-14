@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 git pull origin master
 
 function updateHomeDirectory() {
-  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "boot.sh" -av . ~
+  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "boot.sh" --exclude ".vimrc.swp" -av . ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
