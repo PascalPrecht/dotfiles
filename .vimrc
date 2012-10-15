@@ -2,6 +2,14 @@ set nocompatible " Don't care about Vi-compatibility
 set wildmenu " Turn wildmenu on
 set history=1000 " Remember ALL THE commands!
 set autoread " Autoread a file when it's changed from outside
+filetype plugin on
+filetype indent on
+set modelines=0
+set tabstop=2
+set shiftwidth=2 
+set softtabstop=2
+set smarttab
+set expandtab
 
 let mapleader = ',' " Change mapleader
 
@@ -66,10 +74,6 @@ set hlsearch " Highlight search matches
  "	=> Text, tab and indent related 
  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
  
- set expandtab
- set tabstop=2
- set shiftwidth=2 
- set smarttab
  
  " Set text width
  set tw=500
@@ -116,5 +120,3 @@ augroup END
 
 nnoremap <F3> :NumbersToggle<CR>
  " Enable filetype plugin
- filetype plugin on
- filetype indent on
