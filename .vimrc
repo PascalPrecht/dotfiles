@@ -1,4 +1,5 @@
 set nocompatible " Don't care about Vi-compatibility
+set wildmenu " Turn wildmenu on
 set history=1000 " Remember ALL THE commands!
 set autoread " Autoread a file when it's changed from outside
 
@@ -31,26 +32,11 @@ nnoremap <leader>w :w!<cr>
 
 set lines=999 " Open the tallest window possible
 set columns=9999 " Open the widest window possible
-
-
- " Turn on Wild menu
- set wildmenu
-
- "Always show current position
- set ruler
-
- "The commandbar height
- set cmdheight=2
-
- "Change buffer without saving
- set hid
- set guioptions-=r
- set guioptions-=L
-
- set smartcase
-
- " Highlight search things
- set hlsearch
+set ruler "Always show current position
+set cmdheight=3 "The commandbar height
+set hidden " Change buffer without saving
+set ignorecase
+set hlsearch " Highlight search matches
 
  " Set magic on, for regular expressions
  set magic
