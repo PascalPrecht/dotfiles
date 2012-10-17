@@ -24,7 +24,7 @@ symlink() {
 
 echo "Updating dotfiles..."
 
-#git pull origin master
+git pull origin master
 
 echo "Setting up Symlinks..."
 echo " "
