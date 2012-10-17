@@ -23,11 +23,14 @@ symlink() {
 }
 
 echo "Updating dotfiles..."
+echo " "
 
 git pull origin master
 
+echo " "
 echo "Setting up Symlinks..."
 echo " "
+
 for f in $FILES
 do
   if ! in_array $f $ARRAY; then
@@ -41,4 +44,5 @@ done
 echo " "
 echo "Successfully updated dotfiles!"
 echo " "
+
 source ~/.bash_profile
