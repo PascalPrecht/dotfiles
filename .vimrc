@@ -1,4 +1,5 @@
 set nocompatible " Don't care about Vi-compatibility
+
 set wildmenu " Turn wildmenu on
 set history=1000 " Remember ALL THE commands!
 set autoread " Autoread a file when it's changed from outside
