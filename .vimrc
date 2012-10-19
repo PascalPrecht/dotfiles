@@ -1,10 +1,76 @@
-set nocompatible " Don't care about Vi-compatibility
+" Environment {
+  " Basics {
+    set nocompatible          " Don't care about Vi-compatibility
+  " }
+" }
 
-set wildmenu " Turn wildmenu on
-set history=1000 " Remember ALL THE commands!
+" General {
+
+  filetype plugin indent on
+  syntax on                   " Enable syntax highlighting
+  scriptencoding utf-8        " Setting character encoding in the script
+  set shortmess+=filmnrxoOtT  " Short messaging in commandline
+  set virtualedit=onemore     " Allow for cursor beyond last character
+  set history=1000            " Remember ALL THE commands!
+  set spell                   " Enable spell checking
+  set hidden                  " Change buffer without saving
+
+  " Files 'n Stuff {
+    set backup                " Delete old backup, backup current file
+    set undolevels=1000       " Do ALL THE undo's!
+    set undoreload=10000      " Maximum number lines to save for undo on a buffer reload
+  " }
+" }
+
+" GUI {
+
+  colorscheme monokai
+
+  " Commandline {
+    set showcmd
+    set showmode                " Show current mode on commandline
+    set cursorline              " Highlight cursorline!
+    set ruler                   "Always show current position
+  " }
+
+  " Statusline {
+    set laststatus=2                          " Windows always will have a status line
+    set statusline=%<%f\                      " Filename
+    set statusline+=%w%h%m%r                  " Options
+    set statusline+=\ [%{&ff}/%Y]             " Filetype
+    set statusline+=\ [%{getcwd()}]           " Current directory
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
+  " }
+
+  set backspace=indent,eol,start  " Backspace for dummies?
+  set nu                          " Enable numbers
+  set showmatch                   " Show matching brackets (Damn this is so cool!)
+
+  " Searching {
+    set incsearch
+    set hlsearch
+    set ignorecase                " Case insensitive search
+    set smartcase                 " Case sensitive when uc present
+  " }
+
+  set wildmenu                    " Enable wild menu
+  set wildmode=list:longest,full
+  set scrolljump=5
+  set scrolloff=3
+  set list
+
+  " Formatting {
+    set nowrap
+    set autoindent
+    set shiftwidth=2
+    set expandtab
+    set tabstop=2
+    set softtabstop=2
+  " }
+" }
+
+
 set autoread " Autoread a file when it's changed from outside
-filetype plugin on
-filetype indent on
 set modelines=0
 set tabstop=2
 set shiftwidth=2 
@@ -41,10 +107,7 @@ nnoremap <leader>w :w!<cr>
 
 set lines=999 " Open the tallest window possible
 set columns=9999 " Open the widest window possible
-set ruler "Always show current position
 set cmdheight=3 "The commandbar height
-set hidden " Change buffer without saving
-set ignorecase
 set hlsearch " Highlight search matches
 
  " Set magic on, for regular expressions
@@ -60,14 +123,10 @@ set hlsearch " Highlight search matches
  "	=> Colors and fonts
  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
  " Enable syntax highligthing
- syntax enable
 
     set guioptions-=T " Set off menubar
     set guifont=Inconsolata\ 18
 	set t_Co=256 " Set count of terminal colors
-	set background=light
-	colorscheme Monokai
-	set number
 
  " Set the encoding
  set encoding=utf8
@@ -80,15 +139,12 @@ set hlsearch " Highlight search matches
  set tw=500
 
  " Set autoindent
- set autoindent
 
  " Set smartindent
  set smartindent
 
  " Wrap lines
- set wrap
  
- set incsearch
 
  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  "	=> Plugin settings 
@@ -111,7 +167,6 @@ inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-P> :call PhpDocSingle()<CR> 
 vnoremap <C-P> :call PhpDocRange()<CR> 
 
-set list
 
 augroup trailing
     au!
