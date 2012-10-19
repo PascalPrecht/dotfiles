@@ -1,19 +1,26 @@
 " Environment {
+    let $JS_CMD='node'
   " Basics {
     set nocompatible          " Don't care about Vi-compatibility
+    set modelines=0
   " }
 " }
 
 " General {
 
+  set autoread                " Autoread a file when it's changed from outside
+  set lines=999               " Open the tallest window possible
+  set columns=9999            " Open the widest window possible
   filetype plugin indent on
   syntax on                   " Enable syntax highlighting
   scriptencoding utf-8        " Setting character encoding in the script
+  set encoding=utf8
   set shortmess+=filmnrxoOtT  " Short messaging in commandline
   set virtualedit=onemore     " Allow for cursor beyond last character
   set history=1000            " Remember ALL THE commands!
   set spell                   " Enable spell checking
   set hidden                  " Change buffer without saving
+  set magic
 
   " Files 'n Stuff {
     set backup                " Delete old backup, backup current file
@@ -24,13 +31,17 @@
 
 " GUI {
 
+  set guioptions-=T           " Set off menubar
+  set guifont=Inconsolata\ 18
+  set t_Co=256                " Set count of terminal colors
   colorscheme monokai
 
   " Commandline {
     set showcmd
     set showmode                " Show current mode on commandline
     set cursorline              " Highlight cursorline!
-    set ruler                   "Always show current position
+    set ruler                   " Always show current position
+    set cmdheight=3             " The commandline height
   " }
 
   " Statusline {
@@ -62,117 +73,53 @@
   " Formatting {
     set nowrap
     set autoindent
+    set smartindent
     set shiftwidth=2
     set expandtab
     set tabstop=2
     set softtabstop=2
+    set smarttab
+    set tw=500                    " Set text width
+  " }
+
+  " Sounds {
+    set noerrorbells
+    set visualbell
+    set t_vb=
+  " }
+
+  " Key mappings {
+    let mapleader = ',' " Change mapleader
+    " Open up .vimrc quickly in a new buffer
+    nnoremap  <leader>ev :vsp $MYVIMRC<cr>
+    " And resource it as fast as light
+    nnoremap  <leader>sv :source $MYVIMRC<cr>
+
+    " Disabling arrow keys in normal and insert mode
+    noremap   <up> <nop>
+    noremap   <down> <nop>
+    noremap   <left> <nop>
+    noremap   <right> <nop>
+    inoremap  <up> <nop>
+    inoremap  <down> <nop>
+    inoremap  <left> <nop>
+    inoremap  <right> <nop>
+
+    " Also disabling escape key. It's too far away!
+    inoremap  <esc> <nop>
+
+    " 'jk' is much better :)
+    inoremap  jk <esc>
+
+    " Fast saving
+    nnoremap <leader>w :w!<cr>
   " }
 " }
 
-
-set autoread " Autoread a file when it's changed from outside
-set modelines=0
-set tabstop=2
-set shiftwidth=2 
-set softtabstop=2
-set smarttab
-set expandtab
-
-let mapleader = ',' " Change mapleader
-
-" Open up .vimrc quickly in a new buffer
-nnoremap  <leader>ev :vsp $MYVIMRC<cr>
-
-" And resource it as fast as light
-nnoremap  <leader>sv :source $MYVIMRC<cr>
-
-" Disabling arrow keys in normal and insert mode
-noremap   <up> <nop>
-noremap   <down> <nop>
-noremap   <left> <nop>
-noremap   <right> <nop>
-inoremap  <up> <nop>
-inoremap  <down> <nop>
-inoremap  <left> <nop>
-inoremap  <right> <nop>
-
-" Also disabling escape key. It's too far away!
-inoremap  <esc> <nop>
-
-" 'jk' is much better :)
-inoremap  jk <esc>
-
-" Fast saving
-nnoremap <leader>w :w!<cr>
-
-set lines=999 " Open the tallest window possible
-set columns=9999 " Open the widest window possible
-set cmdheight=3 "The commandbar height
-set hlsearch " Highlight search matches
-
- " Set magic on, for regular expressions
- set magic
-
- " No sound on errors
- set noerrorbells
- set visualbell
- set t_vb=
- set tm=500
-
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- "	=> Colors and fonts
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
- " Enable syntax highligthing
-
-    set guioptions-=T " Set off menubar
-    set guifont=Inconsolata\ 18
-	set t_Co=256 " Set count of terminal colors
-
- " Set the encoding
- set encoding=utf8
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- "	=> Text, tab and indent related 
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
- 
- 
- " Set text width
- set tw=500
-
- " Set autoindent
-
- " Set smartindent
- set smartindent
-
- " Wrap lines
- 
-
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- "	=> Plugin settings 
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
- " Use Node.js for JavaScript interpretation
- let $JS_CMD='node'
-
-au BufRead,BufNewFile *.tpl set filetype=smarty 
- 
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- "	=> Key Mapping
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
- map <C-B> :!php -l %<CR>
- cmap ff<CR> :FuzzyFinderFile<CR>
- cmap ffb<CR> :FuzzyFinderBuffer<CR>
-
-source ~/.vim/plugin/matchit.vim 
-source ~/.vim/plugin/php-doc.vim 
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <C-P> :call PhpDocSingle()<CR> 
-vnoremap <C-P> :call PhpDocRange()<CR> 
-
-
-augroup trailing
-    au!
-    au InsertEnter * :set listchars-=trail:⌴
-    au InsertLeave * :set listchars+=trail:⌴
-augroup END
-
-nnoremap <F3> :NumbersToggle<CR>
- " Enable filetype plugin
+" Autocommands {
+  augroup trailing
+      au!
+      au InsertEnter * :set listchars-=trail:⌴
+      au InsertLeave * :set listchars+=trail:⌴
+  augroup END
+" }
