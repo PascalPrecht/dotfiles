@@ -40,9 +40,8 @@
 " GUI {
 
   set guioptions-=T           " Set off menubar
-  set guifont=Inconsolata\ 18
   set t_Co=256                " Set count of terminal colors
-  colorscheme clouds
+  colorscheme badwolf
 
   " Commandline {
     set showcmd
