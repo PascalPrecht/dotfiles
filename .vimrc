@@ -3,6 +3,7 @@
   " Basics {
     set nocompatible          " Don't care about Vi-compatibility
     set modelines=0
+    set mouse=                " Disabling mouse support
   " }
 " }
 
@@ -23,6 +24,7 @@
   set hidden                  " Change buffer without saving
   set magic
   set noswapfile
+  set lazyredraw
 
   " Window {
     set splitbelow            " Split current window below
