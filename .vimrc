@@ -1,9 +1,17 @@
+
+
 " Environment {
     let $JS_CMD='node'
   " Basics {
     set nocompatible          " Don't care about Vi-compatibility
     set modelines=0
     set mouse=                " Disabling mouse support
+    filetype off
+
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+
+    Bundle 'gmarik/vundle'
   " }
 " }
 
