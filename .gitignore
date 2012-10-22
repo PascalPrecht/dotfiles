@@ -1,1 +1,9 @@
-*.swp
+*.sw?
+.DS_STORE
+.vim/.DS_STORE
+.vim/.netrwhist
+.vim/colors/.DS_STORE
+.vim/ftdetect/.DS_STORE
+.vim/ftplugin/.DS_STORE
+.vim/indent/.DS_STORE
+.vim/syntax/.DS_STORE
