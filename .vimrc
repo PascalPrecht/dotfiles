@@ -33,7 +33,6 @@
   " }
 
   " Files 'n Stuff {
-    set backup                " Delete old backup, backup current file
     set undolevels=1000       " Do ALL THE undo's!
     set undoreload=10000      " Maximum number lines to save for undo on a buffer reload
   " }
@@ -44,7 +43,7 @@
   set guioptions-=T           " Set off menubar
   set t_Co=256                " Set count of terminal colors
   colorscheme badwolf
-
+  set foldenable
   " Commandline {
     set showcmd
     set showmode                " Show current mode on commandline
@@ -122,6 +121,8 @@
     inoremap  <down> <nop>
     inoremap  <left> <nop>
     inoremap  <right> <nop>
+
+    nnoremap $a <nop>
 
     nnoremap j gj
     nnoremap k gk

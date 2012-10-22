@@ -4,17 +4,7 @@ shopt -s dotglob
 cd "$(dirname "$0")"
 
 DOTFILES_PATH=$HOME/dotfiles
-FILES=$DOTFILES_PATH/*
-ARRAY=([0]=$DOTFILES_PATH/.git [1]=$DOTFILES_PATH/.gitignore [2]=$DOTFILES_PATH/bootstrap.sh)
-
-in_array() {
-  for (( i=0; i<${#ARRAY[@]}; i++)); do
-    if [ ${ARRAY[$i]} == $1 ]; then
-      return 0
-    fi
-  done
-  return 1
-}
+FILES=$(find . -name "*" -depth 1 | grep -v "/\.git" | grep -v ".gitignore" | grep -v "\.$" | grep -v "bootstrap.sh")
 
 symlink() {
   if [ ! -e $2 ] ; then
@@ -33,12 +23,11 @@ echo " "
 
 for f in $FILES
 do
-  if ! in_array $f $ARRAY; then
-    fname=$(basename $f)
-    symlink $f $HOME/$fname
+  fname=$(basename $f)
 
-    echo "$HOME/$fname -> $f"
-  fi
+  symlink "$DOTFILES_PATH/$fname" "$HOME/$fname"
+
+  echo "$HOME/$fname -> $DOTFILES_PATH/$fname"
 done
 
 echo " "
