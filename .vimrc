@@ -10,6 +10,7 @@
     call vundle#rc()
 
     Bundle 'gmarik/vundle'
+    Bundle 'Lokaltog/vim-easymotion'
   " }
 " }
 
