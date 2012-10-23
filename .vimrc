@@ -155,6 +155,8 @@
 " }
 
 " Autocommands {
+  au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
+
   augroup trailing
       au!
       au InsertEnter * :set listchars-=trail:⌴
