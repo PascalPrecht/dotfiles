@@ -30,7 +30,17 @@ do
   echo "$HOME/$fname -> $DOTFILES_PATH/$fname"
 done
 
+if [ ! -d $HOME/.vim/bundle ]; then
+    mkdir -p $HOME/.vim/bundle
+fi
+
 echo " "
+
+if [ ! -e $HOME/.vim/bundle/vundle ]; then
+    echo "Installing Vundle"
+    git clone http://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+fi
+
 echo "Successfully updated dotfiles!"
 echo " "
 
