@@ -4,15 +4,23 @@
     set nocompatible          " Don't care about Vi-compatibility
     set modelines=0
     set mouse=                " Disabling mouse support
-    filetype off
-
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-
-    Bundle 'gmarik/vundle'
-    Bundle 'Lokaltog/vim-easymotion'
   " }
 " }
+
+" Vundle {
+  filetype off
+
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+
+  " Vundle itself
+  Bundle 'gmarik/vundle'
+  " Easymotion
+  Bundle 'Lokaltog/vim-easymotion'
+  " Fugitive
+  Bundle 'tpope/vim-fugitive'
+" }
+
 
 " General {
 
@@ -65,6 +73,7 @@
     set statusline+=%w%h%m%r                  " Options
     set statusline+=\ [%{&ff}/%Y]             " Filetype
     set statusline+=\ [%{getcwd()}]           " Current directory
+    set statusline+=\ %{fugitive#statusline()}
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
   " }
 
@@ -120,16 +129,14 @@
     nnoremap  <leader>sv :source $MYVIMRC<cr>
 
     " Disabling arrow keys in normal and insert mode
-    nnoremap   <up> <nop>
-    nnoremap   <down> <nop>
-    nnoremap   <left> <nop>
-    nnoremap   <right> <nop>
+    nnoremap  <up> <nop>
+    nnoremap  <down> <nop>
+    nnoremap  <left> <nop>
+    nnoremap  <right> <nop>
     inoremap  <up> <nop>
     inoremap  <down> <nop>
     inoremap  <left> <nop>
     inoremap  <right> <nop>
-
-    nnoremap $a <nop>
 
     nnoremap j gj
     nnoremap k gk
@@ -152,11 +159,17 @@
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
+
+    nnoremap <leader>bi :BundleInstall<cr>
+    nnoremap <leader>bi! :BundleInstall!<cr>
+    nnoremap <leader>bl :BundleList<cr>
+    nnoremap <leader>bc :BundleClean<cr>
   " }
 " }
 
 " Autocommands {
   au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
+  au BufEnter,BufNewFile,BufRead *.less set filetype=css
 
   augroup trailing
       au!
