@@ -171,6 +171,9 @@
   au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
   au BufEnter,BufNewFile,BufRead *.less set filetype=css
 
+  au BufNewFile *.html 0r ~/.vim/boilerplates/html.html
+  au BufNewFile jquery.*.js 0r ~/.vim/boilerplates/jquery.plugin.js
+
   augroup trailing
       au!
       au InsertEnter * :set listchars-=trail:⌴
