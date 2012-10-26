@@ -1,13 +1,13 @@
-" Environment {
+" Environment {{{
     let $JS_CMD='node'
-  " Basics {
+  " Basics {{{
     set nocompatible          " Don't care about Vi-compatibility
     set modelines=0
     set mouse=                " Disabling mouse support
-  " }
-" }
+  " }}}
+" }}}
 
-" Vundle {
+" Vundle {{{
   filetype off
 
   set rtp+=~/.vim/bundle/vundle/
@@ -19,10 +19,10 @@
   Bundle 'Lokaltog/vim-easymotion'
   " Fugitive
   Bundle 'tpope/vim-fugitive'
-" }
+" }}}
 
 
-" General {
+" General {{{
 
   set autoread                " Autoread a file when it's changed from outside
   set ttyfast
@@ -41,33 +41,33 @@
   set noswapfile
   set lazyredraw
 
-  " Window {
+  " Window {{{
     set splitbelow            " Split current window below
     set splitright            " Split current window right
     set title
-  " }
+  " }}}
 
-  " Files 'n Stuff {
+  " Files 'n Stuff {{{
     set undolevels=1000       " Do ALL THE undo's!
     set undoreload=10000      " Maximum number lines to save for undo on a buffer reload
-  " }
-" }
+  " }}}
+" }}}
 
-" GUI {
+" GUI {{{
 
   set guioptions-=T           " Set off menubar
   set t_Co=256                " Set count of terminal colors
   colorscheme badwolf
   set foldenable
-  " Commandline {
+  " Commandline {{{
     set showcmd
     set showmode                " Show current mode on commandline
     set cursorline              " Highlight cursorline!
     set ruler                   " Always show current position
     set cmdheight=3             " The commandline height
-  " }
+  " }}}
 
-  " Statusline {
+  " Statusline {{{
     set laststatus=2                          " Windows always will have a status line
     set statusline=%<%f\                      " Filename
     set statusline+=%w%h%m%r                  " Options
@@ -75,19 +75,19 @@
     set statusline+=\ [%{getcwd()}]           " Current directory
     set statusline+=\ %{fugitive#statusline()}
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
-  " }
+  " }}}
 
   set backspace=indent,eol,start  " Backspace for dummies?
   set relativenumber
   set showmatch                   " Show matching brackets (Damn this is so cool!)
   set matchtime=3
 
-  " Searching {
+  " Searching {{{
     set incsearch
     set hlsearch
     set ignorecase                " Case insensitive search
     set smartcase                 " Case sensitive when uc present
-  " }
+  " }}}
 
   set wildmenu                                      " Enable wild menu
   set wildmode=list:longest,full
@@ -101,7 +101,7 @@
   set scrolloff=3
   set list
 
-  " Formatting {
+  " Formatting {{{
     set wrap
     set autoindent
     set smartindent
@@ -113,15 +113,15 @@
     set tw=500                    " Set text width
     set colorcolumn=85
     set formatoptions=qrn1
-  " }
+  " }}}
 
-  " Sounds {
+  " Sounds {{{
     set noerrorbells
     set visualbell
     set t_vb=
-  " }
+  " }}}
 
-  " Key mappings {
+  " Key mappings {{{
     let mapleader = ',' " Change mapleader
     " Open up .vimrc quickly in a new buffer
     nnoremap  <leader>ev :vsp $MYVIMRC<cr>
@@ -164,10 +164,10 @@
     nnoremap <leader>bi! :BundleInstall!<cr>
     nnoremap <leader>bl :BundleList<cr>
     nnoremap <leader>bc :BundleClean<cr>
-  " }
-" }
+  " }}}
+" }}}
 
-" Autocommands {
+" Autocommands {{{
   au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
   au BufEnter,BufNewFile,BufRead *.less set filetype=css
 
@@ -179,11 +179,20 @@
       au InsertEnter * :set listchars-=trail:⌴
       au InsertLeave * :set listchars+=trail:⌴
   augroup END
-" }
 
-" Abbreviations {
+  " Vimscript file settings {{{
+  augroup filetype_vim
+      autocmd!
+      autocmd FileType vim setlocal foldmethod=marker
+  augroup END
+  " }}}
+" }}}
+
+" Abbreviations {{{
+  iabbrev iff if () {}jk bb i
+"
   iabbrev ldis ಠ_ಠ
   iabbrev lsad ಥ_ಥ
   iabbrev lhap ಥ‿ಥ
   iabbrev lmis ಠ‿ಠ
-" }
+" }}}
