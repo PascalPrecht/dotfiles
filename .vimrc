@@ -139,6 +139,7 @@
     inoremap  <left> <nop>
     inoremap  <right> <nop>
 
+    " Ex-mode is shitty
     nnoremap  Q <nop>
 
     nnoremap j gj
