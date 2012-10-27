@@ -4,6 +4,7 @@
     set nocompatible          " Don't care about Vi-compatibility
     set modelines=0
     set mouse=                " Disabling mouse support
+    set foldlevelstart=0
   " }}}
 " }}}
 
@@ -137,6 +138,8 @@
     inoremap  <down> <nop>
     inoremap  <left> <nop>
     inoremap  <right> <nop>
+
+    nnoremap  Q <nop>
 
     nnoremap j gj
     nnoremap k gk
