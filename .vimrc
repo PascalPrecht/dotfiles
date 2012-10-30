@@ -20,6 +20,8 @@
   Bundle 'Lokaltog/vim-easymotion'
   " Fugitive
   Bundle 'tpope/vim-fugitive'
+  " Easy buffer
+  Bundle 'troydm/easybuffer.vim'
 " }}}
 
 
@@ -175,6 +177,7 @@
   " Fugitive Key mappings
   nnoremap <leader>gs :Gstatus<cr>
   nnoremap <leader>gl :Gllog --graph --abbrev-commit --pretty=oneline<cr>
+  nnoremap <leader>ls :EasyBuffer<cr>
 " }}}
 
 " Autocommands {{{
