@@ -178,6 +178,8 @@
   nnoremap <leader>gs :Gstatus<cr>
   nnoremap <leader>gl :Gllog --graph --abbrev-commit --pretty=oneline<cr>
   nnoremap <leader>ls :EasyBuffer<cr>
+
+  nnoremap <leader>nm :NyanMe<cr>
 " }}}
 
 " Autocommands {{{
@@ -216,7 +218,6 @@
 " }}}
 
 " Functions {{{
-  " Nyan! {{{
     function! NyanMe() " {{{
         hi NyanFur             guifg=#BBBBBB
         hi NyanPoptartEdge     guifg=#ffd0ac
@@ -323,13 +324,14 @@
         echon "”   ‟"
         echohl None
 
-        sleep 1
+        sleep 2
+        echo " "
         redraw
         echo " "
         echo " "
         echo "Noms?"
         redraw
-    endfunction " }}}
-  "}}}
+    endfunction 
     command! NyanMe call NyanMe()
+    " }}}
 " }}}
