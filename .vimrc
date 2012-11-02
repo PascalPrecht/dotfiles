@@ -173,6 +173,7 @@
   nnoremap <leader>bi! :BundleInstall!<cr>
   nnoremap <leader>bl :BundleList<cr>
   nnoremap <leader>bc :BundleClean<cr>
+  nnoremap <leader>bs :BundleSearch<space>
 
   " Fugitive Key mappings
   nnoremap <leader>gs :Gstatus<cr>
