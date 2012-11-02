@@ -1,1 +1,2 @@
 $('#sidebar').hide();
+$('.everyonelovesstackoverflow').hide();
