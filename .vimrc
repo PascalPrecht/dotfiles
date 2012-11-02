@@ -22,6 +22,8 @@
   Bundle 'tpope/vim-fugitive'
   " Easy buffer
   Bundle 'troydm/easybuffer.vim'
+  " SnipMate Bundle
+  Bundle 'snipMate'
 " }}}
 
 
