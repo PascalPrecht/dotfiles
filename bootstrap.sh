@@ -12,7 +12,8 @@ symlink() {
   fi
 }
 
-echo "Updating dotfiles..."
+source allthethings.sh
+
 echo " "
 
 git pull origin master
