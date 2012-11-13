@@ -26,9 +26,14 @@ for f in $FILES
 do
   fname=$(basename $f)
 
-  symlink "$DOTFILES_PATH/$fname" "$HOME/$fname"
+  if [ $fname == 'fish' ] ; then
+    symlink "$DOTFILES_PATH/$fname" "$HOME/.config/$fname"
+    echo "$HOME/.config/$fname -> $DOTFILES_PATH/$fname"
+  else
+    symlink "$DOTFILES_PATH/$fname" "$HOME/$fname"
+    echo "$HOME/$fname -> $DOTFILES_PATH/$fname"
+  fi
 
-  echo "$HOME/$fname -> $DOTFILES_PATH/$fname"
 done
 
 if [ ! -d $HOME/.vim/bundle ]; then

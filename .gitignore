@@ -2,3 +2,5 @@
 .DS_Store
 .vundle
 .vim/bundle
+fish/fish_history
+fishd.*
