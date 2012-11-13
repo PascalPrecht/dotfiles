@@ -4,13 +4,11 @@ These are my personal dotfiles to setup my machine and developing environment. I
 
 ## Installation
 
-**Note**:
-
-When using fish shell, please install the dotfiles **before** you change your shell to fish!
+**Note**: When using fish shell, please install the dotfiles **before** you change your shell to fish!
 
 ### Step 1:
 
-cd to your home directory and clone this repository via git clone.
+<code>cd</code> to your home directory and clone this repository via git clone.
 
 ````
 $ cd ~
@@ -39,7 +37,7 @@ $ .osx -> /Users/[YOURNAME]/dotfiles/.osx
 $ .vim -> /Users/[YOURNAME]/dotfiles/.vim
 $ .vimrc -> /Users/[YOURNAME]/dotfiles/.vimrc
 
-# .. and so one
+# .. and so on
 ````
 
 To check if there are any updates, repeat step 2.
