@@ -24,8 +24,10 @@
   Bundle 'troydm/easybuffer.vim'
   " SnipMate Bundle
   Bundle 'snipMate'
-
+  " CoffeScript
   Bundle 'vim-coffee-script'
+
+  Bundle 'chriskempson/vim-tomorrow-theme'
 " }}}
 
 " General {{{
@@ -63,7 +65,7 @@
 
   set guioptions-=T           " Set off menubar
   set t_Co=256                " Set count of terminal colors
-  colorscheme badwolf
+  colorscheme Tomorrow-Night
   set foldenable
   " Commandline {{{
     set showcmd
