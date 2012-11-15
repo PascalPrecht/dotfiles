@@ -24,8 +24,9 @@
   Bundle 'troydm/easybuffer.vim'
   " SnipMate Bundle
   Bundle 'snipMate'
-" }}}
 
+  Bundle 'vim-coffee-script'
+" }}}
 
 " General {{{
 
