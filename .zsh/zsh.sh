@@ -1,5 +1,4 @@
-fpath=($ZSH_ENV/functions $fpath)
-
+# Loading the theme
 if [ ! "$ZSH_THEME" = "" ]
   then
   if [ -f "$ZSH_ENV/themes/$ZSH_THEME.zsh-theme" ]
