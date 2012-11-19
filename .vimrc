@@ -186,6 +186,9 @@
   nnoremap <leader>ls :EasyBuffer<cr>
 
   nnoremap <leader>nm :NyanMe<cr>
+
+  nnoremap <Space> za
+  vnoremap <Space> za
 " }}}
 
 " Autocommands {{{
