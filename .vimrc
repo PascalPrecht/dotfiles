@@ -18,14 +18,12 @@
   Bundle 'gmarik/vundle'
   " Easymotion
   Bundle 'Lokaltog/vim-easymotion'
-  " Fugitive
-  Bundle 'tpope/vim-fugitive'
   " Easy buffer
   Bundle 'troydm/easybuffer.vim'
-  " SnipMate Bundle
-  Bundle 'snipMate'
   " CoffeScript
   Bundle 'vim-coffee-script'
+
+  Bundle 'Lokaltog/vim-powerline'
   " Microblogging FTW
   Bundle 'TwitVim'
 " }}}
@@ -346,5 +344,7 @@
     command! NyanMe call NyanMe()
     " }}}
 " }}}
+
+let g:Powerline_symbols = 'compatible'
 
 source $HOME/.vim/credentials.vim
