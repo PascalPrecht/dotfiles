@@ -26,8 +26,8 @@
   Bundle 'snipMate'
   " CoffeScript
   Bundle 'vim-coffee-script'
-
-  Bundle 'chriskempson/vim-tomorrow-theme'
+  " Microblogging FTW
+  Bundle 'TwitVim'
 " }}}
 
 " General {{{
@@ -344,3 +344,5 @@
     command! NyanMe call NyanMe()
     " }}}
 " }}}
+
+source $HOME/.vim/credentials.vim
