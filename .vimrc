@@ -189,6 +189,8 @@
 
   nnoremap <Space> za
   vnoremap <Space> za
+
+  nnoremap <leader>tl :FriendsTwitter<cr>
 " }}}
 
 " Autocommands {{{
