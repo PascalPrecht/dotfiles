@@ -65,6 +65,9 @@
   set t_Co=256                " Set count of terminal colors
   colorscheme badwolf
   set foldenable
+  "Highlight group for later matching
+  highlight NonBreakingSpace guibg=re
+
   " Commandline {{{
     set showcmd
     set showmode                " Show current mode on commandline
@@ -165,6 +168,10 @@
 
   " Remove trailing whitespaces
   nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+  " Search for non breaking spaces (ascii 160) Thank you Stø!
+  nnoremap <leader>hw :/\%xa0<cr>
+
   " Using CAPS LOCK instead of CTRL to switch between windows
   nnoremap <C-h> <C-w>h
   nnoremap <C-j> <C-w>j
@@ -191,7 +198,11 @@
   nnoremap <leader>tl :FriendsTwitter<cr>
 " }}}
 
+
 " Autocommands {{{
+  augroup test
+    au BufEnter * :match NonBreakingSpace /\%xa0/
+  augroup END
 
   augroup file_type
     au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
@@ -204,9 +215,9 @@
   augroup END
 
   augroup trailing
-      au!
-      au InsertEnter * :set listchars-=trail:⌴
-      au InsertLeave * :set listchars+=trail:⌴
+    au!
+    au InsertEnter * :set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
+    au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
   augroup END
 
   " Vimscript file settings {{{
