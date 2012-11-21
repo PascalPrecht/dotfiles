@@ -66,7 +66,7 @@
   colorscheme badwolf
   set foldenable
   "Highlight group for later matching
-  highlight NonBreakingSpace guibg=re
+  highlight NonBreakingSpace guibg=red
 
   " Commandline {{{
     set showcmd
