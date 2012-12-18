@@ -32,10 +32,10 @@ $ ls -la ~
 
 # Should return something like this
 
-$ .js -> /Users/[YOURNAME]/dotfiles/.js
-$ .osx -> /Users/[YOURNAME]/dotfiles/.osx
-$ .vim -> /Users/[YOURNAME]/dotfiles/.vim
-$ .vimrc -> /Users/[YOURNAME]/dotfiles/.vimrc
+$ .js -> /Users/[USERNAME]/dotfiles/.js
+$ .osx -> /Users/[USERNAME]/dotfiles/.osx
+$ .vim -> /Users/[USERNAME]/dotfiles/.vim
+$ .vimrc -> /Users/[USERNAME]/dotfiles/.vimrc
 
 # .. and so on
 ````
