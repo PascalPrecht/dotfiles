@@ -4,7 +4,9 @@ shopt -s dotglob
 cd "$(dirname "$0")"
 
 DOTFILES_PATH=$HOME/dotfiles
-FILES=$(find . -name "*" -depth 1 | grep -v "/\.git" | grep -v "/\.itermcolors" | grep -v ".gitignore" | grep -v "README.md" | grep -v ".gitmodules" | grep -v "\.$" | grep -v "allthethings.sh" | grep -v "bootstrap.sh")
+#FILES=$(find . -name "*" -depth 1 | grep -v "/\.git" | grep -v "/\.itermcolors" | grep -v ".gitignore" | grep -v "README.md" | grep -v ".gitmodules" | grep -v "\.$" | grep -v "allthethings.sh" | grep -v "bootstrap.sh")
+
+FILES=$(find . -name "*" -depth 1 | grep -v -f ".ignorefiles" )
 
 symlink() {
   if [ ! -e $2 ] ; then

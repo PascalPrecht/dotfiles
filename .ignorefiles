@@ -1,0 +1,9 @@
+\.ignorefiles
+\.git
+\.itermcolors
+\.gitignore
+README\.md
+\.gitmodules
+\.$
+allthethings\.sh
+bootstrap\.sh
