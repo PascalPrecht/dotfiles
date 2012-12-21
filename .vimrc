@@ -20,6 +20,8 @@
   Bundle 'Lokaltog/vim-easymotion'
   " Easy buffer
   Bundle 'troydm/easybuffer.vim'
+  " Better Numberssssss
+  Bundle 'myusuf3/numbers.vim'
   " CoffeScript
   Bundle 'vim-coffee-script'
 
@@ -196,6 +198,9 @@
   vnoremap <Space> za
 
   nnoremap <leader>tl :FriendsTwitter<cr>
+
+  " Numbersssss
+  nnoremap <leader>nn :NumbersToggle<cr>
 " }}}
 
 
