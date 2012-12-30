@@ -201,8 +201,15 @@
 
   " Numbersssss
   nnoremap <leader>nn :NumbersToggle<cr>
-" }}}
 
+  " Unlearning things
+  nnoremap k$a :Dude<cr>
+
+  function! Dude()
+    echo "Dude! \'O\' should do the job."
+  endfunction
+  command! Dude call Dude()
+" }}}
 
 " Autocommands {{{
   augroup highlight_nbsp
@@ -246,6 +253,7 @@
 " }}}
 
 " Functions {{{
+
     function! NyanMe() " {{{
         hi NyanFur             guifg=#BBBBBB
         hi NyanPoptartEdge     guifg=#ffd0ac
