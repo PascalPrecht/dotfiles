@@ -202,13 +202,8 @@
   " Numbersssss
   nnoremap <leader>nn :NumbersToggle<cr>
 
-  " Unlearning things
-  nnoremap k$a :Dude<cr>
-
-  function! Dude()
-    echo "Dude! \'O\' should do the job."
-  endfunction
-  command! Dude call Dude()
+  " Really, you can do all these things shorter!
+  nnoremap $a :echo "Dude, 'A' is your friend!"<cr>
 " }}}
 
 " Autocommands {{{
