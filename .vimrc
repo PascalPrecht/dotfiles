@@ -28,6 +28,9 @@
   Bundle 'Lokaltog/vim-powerline'
   " Microblogging FTW
   Bundle 'TwitVim'
+
+  " Commentary
+  Bundle 'tpope/vim-commentary'
 " }}}
 
 " General {{{
