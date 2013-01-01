@@ -1,63 +1,8 @@
 source $HOME/.vim/lib/env.vim
 source $HOME/.vim/lib/bundles.vim
+filetype plugin indent on
 source $HOME/.vim/lib/gui.vim
 
-" General {{{
-
-  set autoread                " Autoread a file when it's changed from outside
-  set ttyfast
-  set lines=999               " Open the tallest window possible
-  set columns=9999            " Open the widest window possible
-  filetype plugin indent on
-  syntax on                   " Enable syntax highlighting
-  scriptencoding utf-8        " Setting character encoding in the script
-  set encoding=utf8
-  set shortmess+=filmnrxoOtT  " Short messaging in commandline
-  set virtualedit=onemore     " Allow for cursor beyond last character
-  set history=1000            " Remember ALL THE commands!
-  set spell                   " Enable spell checking
-  set hidden                  " Change buffer without saving
-  set magic
-  set noswapfile
-  set lazyredraw
-
-  " Window {{{
-    set splitbelow            " Split current window below
-    set splitright            " Split current window right
-    set title
-  " }}}
-
-  " Files 'n Stuff {{{
-    set undolevels=1000       " Do ALL THE undo's!
-    set undoreload=10000      " Maximum number lines to save for undo on a buffer reload
-  " }}}
-" }}}
-
-" GUI {{{
-
-
-
-  " Formatting {{{
-    set wrap
-    set autoindent
-    set smartindent
-    set shiftwidth=2
-    set expandtab
-    set tabstop=2
-    set softtabstop=2
-    set smarttab
-    set tw=500                    " Set text width
-    set colorcolumn=85
-    set formatoptions=qrn1
-  " }}}
-
-  " Sounds {{{
-    set noerrorbells
-    set visualbell
-    set t_vb=
-  " }}}
-
-" }}}
 
 " Key mappings {{{
   let mapleader = ',' " Change mapleader

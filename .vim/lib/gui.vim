@@ -15,6 +15,8 @@ set wildignore+=*.DS_Store                        " OSX bullshit
 
 set relativenumber
 
+syntax on                   " Enable syntax highlighting
+
 set scrolljump=5
 set scrolloff=3
 set list
@@ -34,6 +36,7 @@ set showmode                " Show current mode on commandline
 set cursorline              " Highlight cursorline!
 set ruler                   " Always show current position
 set cmdheight=3             " The commandline height
+set shortmess+=filmnrxoOtT  " Short messaging in commandline
 
 " Statusline
 set laststatus=2                          " Windows always will have a status line
@@ -47,3 +50,32 @@ set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
 " Folding
 set foldlevelstart=0
 set foldenable
+
+" Formatting {{{
+  set wrap
+  set autoindent
+  set smartindent
+  set shiftwidth=2
+  set expandtab
+  set tabstop=2
+  set softtabstop=2
+  set smarttab
+  set tw=500                    " Set text width
+  set colorcolumn=85
+  set formatoptions=qrn1
+" }}}
+
+" Sounds {{{
+  set noerrorbells
+  set visualbell
+  set t_vb=
+" }}}
+
+" Window {{{
+  set splitbelow            " Split current window below
+  set splitright            " Split current window right
+  set title
+  set lines=999               " Open the tallest window possible
+  set columns=9999            " Open the widest window possible
+" }}}
+set virtualedit=onemore     " Allow for cursor beyond last character
