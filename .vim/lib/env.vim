@@ -1,4 +1,5 @@
 let $JS_CMD = 'node'
+let g:Powerline_symbols = 'compatible'
 
 set nocompatible          " Don't care about Vi-compatibility
 set mouse=                " Disabling mouse support
