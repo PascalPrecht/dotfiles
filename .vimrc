@@ -1,37 +1,6 @@
-" Environment {{{
-    let $JS_CMD='node'
-  " Basics {{{
-    set nocompatible          " Don't care about Vi-compatibility
-    set modelines=0
-    set mouse=                " Disabling mouse support
-    set foldlevelstart=0
-  " }}}
-" }}}
-
-" Vundle {{{
-  filetype off
-
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-
-  " Vundle itself
-  Bundle 'gmarik/vundle'
-  " Easymotion
-  Bundle 'Lokaltog/vim-easymotion'
-  " Easy buffer
-  Bundle 'troydm/easybuffer.vim'
-  " Better Numberssssss
-  Bundle 'myusuf3/numbers.vim'
-  " CoffeScript
-  Bundle 'vim-coffee-script'
-
-  Bundle 'Lokaltog/vim-powerline'
-  " Microblogging FTW
-  Bundle 'TwitVim'
-
-  " Commentary
-  Bundle 'tpope/vim-commentary'
-" }}}
+source $HOME/.vim/lib/env.vim
+source $HOME/.vim/lib/bundles.vim
+source $HOME/.vim/lib/gui.vim
 
 " General {{{
 
@@ -223,8 +192,8 @@
 
   augroup boilerplate_autoload
     au!
-    au BufNewFile *.html 0r ~/.vim/boilerplates/html.html
-    au BufNewFile jquery.*.js 0r ~/.vim/boilerplates/jquery.plugin.js
+    au BufNewFile *.html 0r ~/.vim/lib/boilerplates/html.html
+    au BufNewFile jquery.*.js 0r ~/.vim/lib/boilerplates/jquery.plugin.js
   augroup END
 
   augroup trailing
