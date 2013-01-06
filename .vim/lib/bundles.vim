@@ -18,3 +18,5 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'TwitVim'
 " Commentary
 Bundle 'tpope/vim-commentary'
+
+Bundle 'Shougo/neocomplcache'
