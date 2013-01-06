@@ -1,5 +1,5 @@
 let $JS_CMD = 'node'
-let g:Powerline_symbols = 'compatible'
+"let g:Powerline_symbols = 'compatible'
 let mapleader = ',' " Change mapleader
 
 set nocompatible          " Don't care about Vi-compatibility
@@ -39,7 +39,7 @@ Bundle 'troydm/easybuffer.vim'
 Bundle 'myusuf3/numbers.vim'
 " CoffeScript
 Bundle 'vim-coffee-script'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
 " Microblogging FTW
 Bundle 'TwitVim'
 " Commentary
