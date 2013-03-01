@@ -49,5 +49,3 @@ fi
 
 echo "Successfully updated dotfiles!"
 echo " "
-
-source ~/.bash_profile

@@ -11,5 +11,3 @@ alias log='fc -l 1'
 
 # Be nice man!
 alias please='sudo'
-
-alias go='server'

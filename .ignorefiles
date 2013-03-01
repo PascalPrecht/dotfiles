@@ -1,6 +1,7 @@
 \.ignorefiles
 \.git
 \.itermcolors
+\.DS_Store
 \.gitignore
 README\.md
 \.gitmodules
