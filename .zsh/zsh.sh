@@ -1,5 +1,6 @@
-source $ZSH_ENV/aliases.zsh
+source $ZSH_ENV/functions.zsh
 
+source $ZSH_ENV/aliases.zsh
 # Loading the theme
 if [ ! "$ZSH_THEME" = "" ]
   then
