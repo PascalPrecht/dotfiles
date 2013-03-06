@@ -1,0 +1,9 @@
+[user]
+  name = Pascal Precht
+  email = pascal.precht@googlemail.com
+[core]
+  editor = vim
+[credential]
+  helper = osxkeychain
+[merge]
+	tool = vimdiff
