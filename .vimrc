@@ -46,6 +46,8 @@ Bundle 'TwitVim'
 Bundle 'tpope/vim-commentary'
 
 Bundle 'Shougo/neocomplcache'
+" GitGutter rocks
+Bundle 'airblade/vim-gitgutter'
 
 filetype plugin indent on
 
