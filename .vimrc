@@ -23,7 +23,6 @@ set lazyredraw
 set undolevels=1000       " Do ALL THE undo's!
 set undoreload=10000      " Maximum number lines to save for undo on a buffer reload
 
-
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
@@ -39,13 +38,6 @@ Bundle 'troydm/easybuffer.vim'
 Bundle 'myusuf3/numbers.vim'
 " CoffeScript
 Bundle 'vim-coffee-script'
-"Bundle 'Lokaltog/vim-powerline'
-" Microblogging FTW
-Bundle 'TwitVim'
-" Commentary
-Bundle 'tpope/vim-commentary'
-
-Bundle 'Shougo/neocomplcache'
 " GitGutter rocks
 Bundle 'airblade/vim-gitgutter'
 
@@ -184,13 +176,8 @@ nnoremap <leader>nm :NyanMe<cr>
 nnoremap <Space> za
 vnoremap <Space> za
 
-nnoremap <leader>tl :FriendsTwitter<cr>
-
 " Numbersssss
 nnoremap <leader>nn :NumbersToggle<cr>
-
-" Really, you can do all these things shorter!
-nnoremap $a :echo "Dude, 'A' is your friend!"<cr>
 
 augroup highlight_nbsp
   au!
@@ -343,5 +330,3 @@ function! NyanMe()
   redraw
 endfunction 
 command! NyanMe call NyanMe()
-
-source $HOME/.vim/credentials.vim
