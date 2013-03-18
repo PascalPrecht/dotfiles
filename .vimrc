@@ -28,18 +28,14 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Vundle itself
 Bundle 'gmarik/vundle'
-" Easymotion
 Bundle 'Lokaltog/vim-easymotion'
-" Easy buffer
 Bundle 'troydm/easybuffer.vim'
-" Better Numberssssss
 Bundle 'myusuf3/numbers.vim'
-" CoffeScript
 Bundle 'vim-coffee-script'
-" GitGutter rocks
 Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-distinguished'
 
 filetype plugin indent on
 
