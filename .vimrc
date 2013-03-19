@@ -36,6 +36,7 @@ Bundle 'vim-coffee-script'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-distinguished'
+Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 
