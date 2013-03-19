@@ -1,6 +1,18 @@
+"""""""""""""""""""""""""""""""""""""""""""""""
+"  __   __ __   __    __   ______   ______    "
+" /\ \ / //\ \ /\ "-./  \ /\  == \ /\  ___\   "
+" \ \ \'/ \ \ \\ \ \-./\ \\ \  __< \ \ \____  "
+"  \ \__|  \ \_\\ \_\ \ \_\\ \_\ \_\\ \_____\ "
+"   \/_/    \/_/ \/_/  \/_/ \/_/ /_/ \/_____/ "
+"                                             "
+"               Pascal Precht                 "
+"                @PascalPrecht                "
+"                                             "
+"""""""""""""""""""""""""""""""""""""""""""""""
 let $JS_CMD = 'node'
 "let g:Powerline_symbols = 'compatible'
 let mapleader = ',' " Change mapleader
+
 
 set nocompatible          " Don't care about Vi-compatibility
 set mouse=                " Disabling mouse support
@@ -37,6 +49,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'Yggdroot/indentLine'
 
 filetype plugin indent on
 
@@ -204,8 +217,6 @@ augroup filetype_vim
   au FileType vim setlocal foldmethod=marker
 augroup END
 
-iabbrev iff if () {}jk bb i
-
 iabbrev ldis ಠ_ಠ
 iabbrev lsad ಥ_ಥ
 iabbrev lhap ಥ‿ಥ
@@ -325,5 +336,5 @@ function! NyanMe()
   echo " "
   echo "Noms?"
   redraw
-endfunction 
+endfunction
 command! NyanMe call NyanMe()
