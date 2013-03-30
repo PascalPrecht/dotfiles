@@ -50,6 +50,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Yggdroot/indentLine'
+Bundle 'terryma/vim-expand-region'
 
 filetype plugin indent on
 
