@@ -51,6 +51,9 @@ Bundle 'Lokaltog/vim-distinguished'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Yggdroot/indentLine'
 Bundle 'terryma/vim-expand-region'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'mhinz/vim-startify'
 
 filetype plugin indent on
 
