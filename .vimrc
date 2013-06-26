@@ -12,6 +12,7 @@
 let $JS_CMD = 'node'
 "let g:Powerline_symbols = 'compatible'
 let mapleader = ',' " Change mapleader
+let maplocalleader = ','
 
 
 set nocompatible          " Don't care about Vi-compatibility
@@ -54,6 +55,7 @@ Bundle 'terryma/vim-expand-region'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mhinz/vim-startify'
+Bundle 'nielsmadan/harlequin'
 
 filetype plugin indent on
 
@@ -108,13 +110,14 @@ set foldenable
 set wrap
 set autoindent
 set smartindent
+set shiftround
 set shiftwidth=2
 set expandtab
 set tabstop=2
 set softtabstop=2
 set smarttab
 set tw=500                    " Set text width
-set colorcolumn=85
+set colorcolumn=81
 set formatoptions=qrn1
 
 set noerrorbells
@@ -153,8 +156,10 @@ nnoremap ; :
 
 " Also disabling escape key. It's too far away!
 inoremap  <esc> <nop>
+
 " 'jk' is much better :)
 inoremap  jk <esc>
+
 " Fast saving
 nnoremap <leader>w :w!<cr>
 nnoremap <leader><space> :noh<cr>
@@ -167,11 +172,17 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Search for non breaking spaces (ascii 160) Thank you Stø!
 nnoremap <leader>hw :/\%xa0<cr>
 
-" Using CAPS LOCK instead of CTRL to switch between windows
+" Use just CTRL instead of CTRL-W to switch between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-l> <C-w>l
+
+" Surround current word with double quotes
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+" Surround current word with single quotes
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 " Vundle Key mappings
 nnoremap <leader>bi :BundleInstall<cr>
@@ -192,6 +203,35 @@ vnoremap <Space> za
 
 " Numbersssss
 nnoremap <leader>nn :NumbersToggle<cr>
+
+" Disabling `$` and `0` in normal mode
+nnoremap $ <nop>
+nnoremap 0 <nop>
+
+" Stronger h and l
+nnoremap H 0
+nnoremap L $
+
+" Keep search pattern at the center of the screen
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+
+" Operator pending mappings
+
+" [MOTION] in next parens
+onoremap in( :<c-u>normal! f(vi(<cr>
+" [MOTION] on a function name in the current line
+onoremap F :<c-u>normal! 0f(hviw<cr>
+
+augroup AutoReloadVimRc
+  au!
+  " automatically reload vimrc when it's saved
+  au BufWritePost $MYVIMRC so $MYVIMRC
+augroup END
 
 augroup highlight_nbsp
   au!
@@ -221,11 +261,53 @@ augroup filetype_vim
   au FileType vim setlocal foldmethod=marker
 augroup END
 
+augroup reintend
+  au!
+  au BufWritePre,BufRead *.html :normal gg=G
+augroup END
+
+augroup comments_linwise
+  au!
+  au Filetype html nnoremap <buffer> <localleader>; I<!--<esc>A--><esc>
+  au Filetype javascript nnoremap <buffer> <localleader>; I//<esc>
+  au Filetype coffeescript nnoremap <buffer> <localeader>; I#<esc>
+  au Filetype css nnoremap <buffer> <localleader>; I/*<esc>A*/<esc>
+  au Filetype vim nnoremap <buffer> <localleader>; I"<esc>A<esc>
+augroup END
+
+augroup comments_blockwise
+  au!
+  au Filetype html vnoremap <buffer> <localleader>; <esc>`<I<!--<esc>`>A--><esc>
+  au Filetype javascript,css vnoremap <buffer> <localleader>; <esc>`<i/*<esc>`>ea*/<esc>
+augroup END
+
+augroup resize_splits
+  au!
+  au VimResized * exe "normal! \<c-w>="
+augroup END
+
 iabbrev ldis ಠ_ಠ
 iabbrev lsad ಥ_ಥ
 iabbrev lhap ಥ‿ಥ
 iabbrev lmis ಠ‿ಠ
 
+iabbrev func function
+iabbrev functino use func!
+iabbrev fucntion use func!
+
+augroup js_abbrevs
+  au!
+  au Filetype javascript :iabbrev desc describe('',
+  au Filetype javascript :iabbrev descibre Ah-ah<left>
+  au Filetype javascript :iabbrev describe Ah-ah<left>
+  au Filetype javascript :iabbrev descibe Ah-ah<left>
+augroup END
+
+
+iabbrev re return
+iabbrev return MÖÖÖÖÖP
+iabbrev reutrn MÖÖÖÖÖP
+iabbrev retrun MÖÖÖÖÖP
 
 function! NyanMe()
   hi NyanFur             guifg=#BBBBBB
