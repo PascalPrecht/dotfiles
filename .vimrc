@@ -6,421 +6,563 @@
 "   \/_/    \/_/ \/_/  \/_/ \/_/ /_/ \/_____/ "
 "                                             "
 "               Pascal Precht                 "
-"                @PascalPrecht                "
+"               @PascalPrecht                 "
 "                                             "
 """""""""""""""""""""""""""""""""""""""""""""""
-let $JS_CMD = 'node'
-"let g:Powerline_symbols = 'compatible'
-let mapleader = ',' " Change mapleader
-let maplocalleader = ','
-
-
-set nocompatible          " Don't care about Vi-compatibility
-set mouse=                " Disabling mouse support
-set modelines=0
-set backspace=indent,eol,start  " Backspace for dummies?
-
-scriptencoding utf-8        " Setting character encoding in the script
-set encoding=utf8
-
-set autoread                " Autoread a file when it's changed from outside
-set ttyfast
-set history=1000            " Remember ALL THE commands!
-set spell                   " Enable spell checking
-set hidden                  " Change buffer without saving
-
-set magic
-set noswapfile
-set lazyredraw
-
-set undolevels=1000       " Do ALL THE undo's!
-set undoreload=10000      " Maximum number lines to save for undo on a buffer reload
-
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'troydm/easybuffer.vim'
-Bundle 'myusuf3/numbers.vim'
-Bundle 'vim-coffee-script'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'Yggdroot/indentLine'
-Bundle 'terryma/vim-expand-region'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'mhinz/vim-startify'
-Bundle 'nielsmadan/harlequin'
-
-filetype plugin indent on
-
-set guioptions-=T           " Set off menubar
-set t_Co=256                " Set count of terminal colors
-colorscheme badwolf
-
-highlight NonBreakingSpace guibg=red
-
-set wildmenu                                      " Enable wild menu
-set wildmode=list:longest,full
-set wildignore+=.git,.svn                         " Version control
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest  " compiled object files
-set wildignore+=*.sw?                             " Vim swap files
-set wildignore+=*.DS_Store                        " OSX bullshit
-
-set relativenumber
-
-syntax on                   " Enable syntax highlighting
-
-set scrolljump=5
-set scrolloff=3
-set list
-
-set showmatch                   " Show matching brackets (Damn this is so cool!)
-set matchtime=3
-
-set incsearch
-set hlsearch
-set ignorecase                " Case insensitive search
-set smartcase                 " Case sensitive when uc present
-
-set showcmd
-set showmode                " Show current mode on commandline
-set cursorline              " Highlight cursorline!
-set ruler                   " Always show current position
-set cmdheight=3             " The commandline height
-set shortmess+=filmnrxoOtT  " Short messaging in commandline
-
-set laststatus=2                          " Windows always will have a status line
-set statusline=%<%f\                      " Filename
-set statusline+=%w%h%m%r                  " Options
-set statusline+=\ [%{&ff}/%Y]             " Filetype
-set statusline+=\ [%{getcwd()}]           " Current directory
-set statusline+=\ %{fugitive#statusline()}
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%   " Right aligned file nav info
-
-set foldlevelstart=0
-set foldenable
-
-set wrap
-set autoindent
-set smartindent
-set shiftround
-set shiftwidth=2
-set expandtab
-set tabstop=2
-set softtabstop=2
-set smarttab
-set tw=500                    " Set text width
-set colorcolumn=81
-set formatoptions=qrn1
-
-set noerrorbells
-set visualbell
-set t_vb=
-
-set splitbelow            " Split current window below
-set splitright            " Split current window right
-set title
-set lines=999               " Open the tallest window possible
-set columns=9999            " Open the widest window possible
-
-set virtualedit=onemore     " Allow for cursor beyond last character
-
-" Open up .vimrc quickly in a new buffer
-nnoremap  <leader>ev :vsp $MYVIMRC<cr>
-" And resource it as fast as light
-nnoremap  <leader>sv :source $MYVIMRC<cr>
-
-" Disabling arrow keys in normal and insert mode
-nnoremap  <up> <nop>
-nnoremap  <down> <nop>
-nnoremap  <left> <nop>
-nnoremap  <right> <nop>
-inoremap  <up> <nop>
-inoremap  <down> <nop>
-inoremap  <left> <nop>
-inoremap  <right> <nop>
-
-" Ex-mode is shitty
-nnoremap  Q <nop>
-
-nnoremap j gj
-nnoremap k gk
-nnoremap ; :
-
-" Also disabling escape key. It's too far away!
-inoremap  <esc> <nop>
-
-" 'jk' is much better :)
-inoremap  jk <esc>
-
-" Fast saving
-nnoremap <leader>w :w!<cr>
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
-
-" Remove trailing whitespaces
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Search for non breaking spaces (ascii 160) Thank you Stø!
-nnoremap <leader>hw :/\%xa0<cr>
-
-" Use just CTRL instead of CTRL-W to switch between windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-
-" Surround current word with double quotes
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-
-" Surround current word with single quotes
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-
-" Vundle Key mappings
-nnoremap <leader>bi :BundleInstall<cr>
-nnoremap <leader>bi! :BundleInstall!<cr>
-nnoremap <leader>bl :BundleList<cr>
-nnoremap <leader>bc :BundleClean<cr>
-nnoremap <leader>bs :BundleSearch<space>
-
-" Fugitive Key mappings
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gl :Gllog --graph --abbrev-commit --pretty=oneline<cr>
-nnoremap <leader>ls :EasyBuffer<cr>
-
-nnoremap <leader>nm :NyanMe<cr>
-
-nnoremap <Space> za
-vnoremap <Space> za
-
-" Numbersssss
-nnoremap <leader>nn :NumbersToggle<cr>
-
-" Disabling `$` and `0` in normal mode
-nnoremap $ <nop>
-nnoremap 0 <nop>
-
-" Stronger h and l
-nnoremap H 0
-nnoremap L $
-
-" Keep search pattern at the center of the screen
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-nnoremap <silent> g# g#zz
-
-" Operator pending mappings
-
-" [MOTION] in next parens
-onoremap in( :<c-u>normal! f(vi(<cr>
-" [MOTION] on a function name in the current line
-onoremap F :<c-u>normal! 0f(hviw<cr>
-
-augroup AutoReloadVimRc
-  au!
-  " automatically reload vimrc when it's saved
-  au BufWritePost $MYVIMRC so $MYVIMRC
-augroup END
-
-augroup highlight_nbsp
-  au!
-  au BufEnter * :match NonBreakingSpace /\%xa0/
-augroup END
-
-augroup file_type
-  au!
-  au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
-  au BufEnter,BufNewFile,BufRead *.less set filetype=css
-augroup END
-
-augroup boilerplate_autoload
-  au!
-  au BufNewFile *.html 0r ~/.vim/lib/boilerplates/html.html
-  au BufNewFile jquery.*.js 0r ~/.vim/lib/boilerplates/jquery.plugin.js
-augroup END
-
-augroup trailing
-  au!
-  au InsertEnter * :set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
-  au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
-augroup END
-
-augroup filetype_vim
-  au!
-  au FileType vim setlocal foldmethod=marker
-augroup END
-
-augroup reintend
-  au!
-  au BufWritePre,BufRead *.html :normal gg=G
-augroup END
-
-augroup comments_linwise
-  au!
-  au Filetype html nnoremap <buffer> <localleader>; I<!--<esc>A--><esc>
-  au Filetype javascript nnoremap <buffer> <localleader>; I//<esc>
-  au Filetype coffeescript nnoremap <buffer> <localeader>; I#<esc>
-  au Filetype css nnoremap <buffer> <localleader>; I/*<esc>A*/<esc>
-  au Filetype vim nnoremap <buffer> <localleader>; I"<esc>A<esc>
-augroup END
-
-augroup comments_blockwise
-  au!
-  au Filetype html vnoremap <buffer> <localleader>; <esc>`<I<!--<esc>`>A--><esc>
-  au Filetype javascript,css vnoremap <buffer> <localleader>; <esc>`<i/*<esc>`>ea*/<esc>
-augroup END
-
-augroup resize_splits
-  au!
-  au VimResized * exe "normal! \<c-w>="
-augroup END
-
-iabbrev ldis ಠ_ಠ
-iabbrev lsad ಥ_ಥ
-iabbrev lhap ಥ‿ಥ
-iabbrev lmis ಠ‿ಠ
-
-iabbrev func function
-iabbrev functino use func!
-iabbrev fucntion use func!
-
-augroup js_abbrevs
-  au!
-  au Filetype javascript :iabbrev desc describe('',
-  au Filetype javascript :iabbrev descibre Ah-ah<left>
-  au Filetype javascript :iabbrev describe Ah-ah<left>
-  au Filetype javascript :iabbrev descibe Ah-ah<left>
-augroup END
-
-
-iabbrev re return
-iabbrev return MÖÖÖÖÖP
-iabbrev reutrn MÖÖÖÖÖP
-iabbrev retrun MÖÖÖÖÖP
-
-function! NyanMe()
-  hi NyanFur             guifg=#BBBBBB
-  hi NyanPoptartEdge     guifg=#ffd0ac
-  hi NyanPoptartFrosting guifg=#fd3699 guibg=#fe98ff
-  hi NyanRainbow1        guifg=#6831f8
-  hi NyanRainbow2        guifg=#0099fc
-  hi NyanRainbow3        guifg=#3cfa04
-  hi NyanRainbow4        guifg=#fdfe00
-  hi NyanRainbow5        guifg=#fc9d00
-  hi NyanRainbow6        guifg=#fe0000
-
-
-  echohl NyanRainbow1
-  echon "≈"
-  echohl NyanRainbow2
-  echon "≋"
-  echohl NyanRainbow3
-  echon "≈"
-  echohl NyanRainbow4
-  echon "≋"
-  echohl NyanRainbow5
-  echon "≈"
-  echohl NyanRainbow6
-  echon "≋"
-  echohl NyanRainbow1
-  echon "≈"
-  echohl NyanRainbow2
-  echon "≋"
-  echohl NyanRainbow3
-  echon "≈"
-  echohl NyanRainbow4
-  echon "≋"
-  echohl NyanRainbow5
-  echon "≈"
-  echohl NyanRainbow6
-  echon "≋"
-  echohl None
-  echo ""
-
-  echohl NyanRainbow1
-  echon "≈"
-  echohl NyanRainbow2
-  echon "≋"
-  echohl NyanRainbow3
-  echon "≈"
-  echohl NyanRainbow4
-  echon "≋"
-  echohl NyanRainbow5
-  echon "≈"
-  echohl NyanRainbow6
-  echon "≋"
-  echohl NyanRainbow1
-  echon "≈"
-  echohl NyanRainbow2
-  echon "≋"
-  echohl NyanRainbow3
-  echon "≈"
-  echohl NyanRainbow4
-  echon "≋"
-  echohl NyanRainbow5
-  echon "≈"
-  echohl NyanRainbow6
-  echon "≋"
-  echohl NyanFur
-  echon "╰"
-  echohl NyanPoptartEdge
-  echon "⟨"
-  echohl NyanPoptartFrosting
-  echon "⣮⣯⡿"
-  echohl NyanPoptartEdge
-  echon "⟩"
-  echohl NyanFur
-  echon "⩾^ω^⩽"
-  echohl None
-  echo ""
-
-  echohl NyanRainbow1
-  echon "≈"
-  echohl NyanRainbow2
-  echon "≋"
-  echohl NyanRainbow3
-  echon "≈"
-  echohl NyanRainbow4
-  echon "≋"
-  echohl NyanRainbow5
-  echon "≈"
-  echohl NyanRainbow6
-  echon "≋"
-  echohl NyanRainbow1
-  echon "≈"
-  echohl NyanRainbow2
-  echon "≋"
-  echohl NyanRainbow3
-  echon "≈"
-  echohl NyanRainbow4
-  echon "≋"
-  echohl NyanRainbow5
-  echon "≈"
-  echohl NyanRainbow6
-  echon "≋"
-  echohl None
-  echon " "
-  echohl NyanFur
-  echon "”   ‟"
-  echohl None
-
-  sleep 2
-  echo " "
-  redraw
-  echo " "
-  echo " "
-  echo "Noms?"
-  redraw
-endfunction
-command! NyanMe call NyanMe()
+
+" Vars ----------------- {{{
+
+  let $JS_CMD = 'node'
+  let mapleader = ','
+  let maplocalleader = ','
+
+" }}}
+
+" Basic Settings ----------------- {{{
+
+  set nocompatible                " Don't care about Vi-compatibility
+  scriptencoding utf-8            " Character encoding
+  set encoding=utf8
+  set mouse=                      " Disabling mouse support
+  set modelines=0
+  set backspace=indent,eol,start  " Backspace for dummies?
+  set autoread                    " Autoread a file when it's changed from outside
+
+  set history=1000                " Remember ALL THE commands!
+  set undolevels=1000             " Do ALL THE undo's!
+  set undoreload=10000            " Maximum number lines to save for undo on a buffer reload
+
+  set ttyfast                     " Smoother terminal connection
+  set nospell                     " Disable spell checking basically
+  set hidden                      " Change buffer without saving
+  set magic                       " Better searching
+
+  set noswapfile                  " Don't pollute my hard drive, even temporary
+  set lazyredraw
+
+" }}}
+
+" Vundle startup ----------------- {{{
+
+  filetype off
+
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+
+" }}}
+
+" Bundles ----------------- {{{
+
+  " Vundle
+  Bundle 'gmarik/vundle'
+
+  " CoffeeScript support
+  Bundle 'kchmck/vim-coffee-script'
+
+  " Fancy git gutter
+  Bundle 'airblade/vim-gitgutter'
+
+  " See these great indent lines?
+  Bundle 'Yggdroot/indentLine'
+
+  " Easier visual selection
+  Bundle 'terryma/vim-expand-region'
+
+  " SublimeText like multiple cursors
+  Bundle 'terryma/vim-multiple-cursors'
+
+  " .editorconfig
+  Bundle 'editorconfig/editorconfig-vim'
+
+  " This Nyancat is really important, do not remove
+  Bundle 'koron/nyancat-vim'
+
+  " Minimal statusline
+  Bundle 'millermedeiros/vim-statline'
+
+  " Wakatime time tracking
+  Bundle 'wakatime/vim-wakatime'
+
+  " Re-enable filetype plugin indent
+  filetype plugin indent on
+
+" }}}
+
+" GUI ----------------- {{{
+
+  " General ----------------- {{{
+
+    set guioptions-=T                                 " Turn off menubar
+    set t_Co=256                                      " Terminal colors count
+
+    colorscheme badwolf
+    syntax on                                         " Enable syntax highlighting
+
+    set list                                          " Display unprintable chars
+
+    set relativenumber
+    set scrolljump=5                                  " Minimal number of screen lines to scroll
+    set scrolloff=3                                   " Minimal number of screen lines to keep above and below
+
+  " }}}
+
+  " Wildmenu ----------------- {{{
+
+    set wildmenu                                      " Enable wild menu
+    set wildmode=list:longest,full
+    set wildignore+=.git,.svn                         " Version control
+    set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " binary images
+    set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest  " compiled object files
+    set wildignore+=*.sw?                             " Vim swap files
+    set wildignore+=*.DS_Store                        " OSX bullshit
+
+  " }}}
+
+  " Search ----------------- {{{
+
+    set showmatch                                     " Show matching brackets (Damn this is so cool!)
+    set matchtime=3
+
+    set incsearch
+    set hlsearch
+    set ignorecase                                    " Case insensitive search
+    set smartcase                                     " Case sensitive when uc present
+
+  " }}}
+
+  " Statusline ----------------- {{{
+  "
+  " Nothing to see here yet, using Statline plugin currently.
+  "
+  " }}}
+
+  " Commandline ----------------- {{{
+
+    set showcmd
+    set showmode                                      " Show current mode on commandline
+    set cmdheight=3                                   " The commandline height
+    set shortmess+=filmnrxoOtT                        " Short messaging in commandline
+    set laststatus=2                                  " Windows always will have a status line
+
+  " }}}
+
+  " Cursor/Ruler ----------------- {{{
+
+    set cursorline                                    " Highlight cursorline!
+    set ruler                                         " Always show current position
+    set colorcolumn=81
+    set virtualedit=onemore                           " Allow for cursor beyond last character
+
+  " }}}
+
+  " Text ----------------- {{{
+
+    set foldlevelstart=0
+    set foldenable
+
+    set wrap
+    set autoindent
+    set smartindent
+
+    set shiftround
+    set shiftwidth=2
+    set expandtab
+    set tabstop=2
+    set softtabstop=2
+    set smarttab
+
+    set tw=500                                        " Set text width
+    set formatoptions=qrn1
+
+  " }}}
+
+  " Sound ----------------- {{{
+
+    set noerrorbells
+    set visualbell
+    set t_vb=
+
+  " }}}
+
+  " Windows/Splits ----------------- {{{
+
+    set splitbelow                                    " Split current window below
+    set splitright                                    " Split current window right
+    set title
+    set lines=999                                     " Open the tallest window possible
+    set columns=9999                                  " Open the widest window possible
+
+  " }}}
+
+" }}}
+
+" Plugins ----------------- {{{
+
+  " Vundle ----------------- {{{
+
+    nnoremap <leader>bi :BundleInstall<cr>
+    nnoremap <leader>bi! :BundleInstall!<cr>
+    nnoremap <leader>bl :BundleList<cr>
+    nnoremap <leader>bc :BundleClean<cr>
+    nnoremap <leader>bs :BundleSearch<space>
+
+  " }}}
+
+  " Statline ----------------- {{{
+
+  let g:statline_no_encoding_string = '[???]'
+  let g:statline_filename_relative = 1
+  let g:statline_show_charcode = 1
+
+  " }}}
+
+" }}}
+
+" Mappings ----------------- {{{
+
+  " Shortcuts ----------------- {{{
+
+    " Open up .vimrc quickly in a new buffer
+    nnoremap  <leader>ev :vsp $MYVIMRC<cr>
+    " Source .vimrc explitly
+    nnoremap  <leader>sv :source $MYVIMRC<cr>
+    " Nyan!
+    nnoremap <leader>nm :NyanMe<cr>
+
+  " }}}
+
+  " General ----------------- {{{
+
+    " Disabling escape key. It's too far away!
+    inoremap  <esc> <nop>
+    " `jk` is much better :)
+    inoremap  jk <esc>
+
+    " Ex-mode is shitty
+    nnoremap  Q <nop>
+
+    " Fast saving
+    nnoremap <leader>w :w!<cr>
+
+    " Remove highlighted search
+    nnoremap <leader><space> :noh<cr>
+
+    " e2e matching
+    nnoremap <tab> %
+    vnoremap <tab> %
+
+    " Folding
+    nnoremap <Space> za
+    vnoremap <Space> za
+
+    " Remove trailing whitespaces
+    nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
+
+
+    " Surround current word with double quotes
+    nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+    " Surround current word with single quotes
+    nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+  " }}}
+
+  " Movement ----------------- {{{
+
+    " Disabling arrow keys in normal and insert mode
+    nnoremap  <up> <nop>
+    nnoremap  <down> <nop>
+    nnoremap  <left> <nop>
+    nnoremap  <right> <nop>
+    inoremap  <up> <nop>
+    inoremap  <down> <nop>
+    inoremap  <left> <nop>
+    inoremap  <right> <nop>
+
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap ; :
+
+    " Stronger h and l
+    nnoremap H 0
+    nnoremap L $
+
+    " faster movement
+    nmap J 5j
+    nmap K 5k
+    xmap J 5j
+    xmap K 5k
+
+  " }}}
+
+  " Search ----------------- {{{
+
+    " Search for non breaking spaces (ascii 160) Thank you Stø!
+    nnoremap <leader>hw :/\%xa0<cr>
+
+    " Keep search pattern at the center of the screen
+    nnoremap <silent> n nzz
+    nnoremap <silent> N Nzz
+    nnoremap <silent> * *zz
+    nnoremap <silent> # #zz
+    nnoremap <silent> g* g*zz
+    nnoremap <silent> g# g#zz
+
+  " }}}
+
+  " Windows/Splits ----------------- {{{
+
+    " Use just CTRL instead of CTRL-W to switch between windows
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+
+  " }}}
+
+  " Operator Pending ------------ {{{
+
+    " in next parens
+    onoremap in( :<c-u>normal! f(vi(<cr>
+    " on a function name in the current line
+    onoremap F :<c-u>normal! 0f(hviw<cr>
+
+  " }}}
+
+" }}}
+
+" Autocommands --------------- {{{
+
+  " General --------------- {{{
+
+    augroup autoload_vimrc
+      au!
+      " automatically reload vimrc when it's saved
+      au BufWritePost $MYVIMRC so $MYVIMRC
+    augroup END
+
+    augroup highlight_nbsp
+      au!
+      au BufEnter * highlight NonBreakingSpace guibg=red
+      au BufEnter * :match NonBreakingSpace /\%xa0/
+    augroup END
+
+    augroup trailing_chars
+      au!
+      au InsertEnter * :set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
+      au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
+    augroup END
+
+    augroup number_mode_switch
+      au!
+      autocmd InsertEnter * set number
+      autocmd InsertLeave * set relativenumber
+    augroup END
+
+  " }}}
+
+  " Filetypes --------------- {{{
+
+    augroup filetype_mapping
+      au!
+      au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
+      au BufEnter,BufNewFile,BufRead *.less set filetype=css
+    augroup END
+
+    augroup filetype_vim
+      au!
+      au FileType vim setlocal foldmethod=marker
+      " Line-wise comments
+      au Filetype vim nnoremap <buffer> <localleader>; I"<esc>A<esc>
+    augroup END
+
+    augroup filetype_html
+      au!
+      " Line-wise comments
+      au Filetype html nnoremap <buffer> <localleader>C I<!--<esc>A--><esc>
+      " Block-wite comments
+      au Filetype html vnoremap <buffer> <localleader>C <esc>`<I<!--<esc>`>A--><esc>
+    augroup END
+
+    augroup filetype_css
+      au!
+      " Line-wise comments
+      au Filetype css nnoremap <buffer> <localleader>C I/*<esc>A*/<esc>
+      " Block-wise comments
+      au Filetype css vnoremap <buffer> <localleader>C <esc>`<I/*<esc>`>A*/<esc>
+    augroup END
+
+    augroup filetype_javascript
+      au!
+      " Line-wise comments
+      au Filetype javascript nnoremap <buffer> <localleader>C I//<esc>
+      " block-wise comments
+      au Filetype javascript vnoremap <buffer> <localleader>C <esc>`<I/*<esc>`>A*/<esc>
+    augroup END
+
+    augroup filetype_go
+      au!
+      " Line-wise comments
+      au Filetype go nnoremap <buffer> <localleader>C I/*<esc>A*/<esc>
+      " block-wise comments
+      au Filetype go vnoremap <buffer> <localleader>C <esc>`<I/*<esc>`>A*/<esc>
+    augroup END
+
+    augroup filetype_coffeescript
+      au!
+      " Line-wise comments
+      au Filetype coffeescript nnoremap <buffer> <localleader>C I#<esc>
+    augroup END
+
+  " }}}
+
+  " Windows/Splits --------------- {{{
+
+    augroup resize_splits
+      au!
+      au VimResized * exe "normal! \<c-w>="
+    augroup END
+
+  " }}}
+
+" }}}
+
+" Abbreviations --------------- {{{
+
+  iabbrev ldis ಠ_ಠ
+  iabbrev lsad ಥ_ಥ
+  iabbrev lhap ಥ‿ಥ
+  iabbrev lmis ಠ‿ಠ
+
+  iabbrev func function
+  iabbrev function use func!
+  iabbrev functino use func!
+  iabbrev fucntion use func!
+  iabbrev funciton Srsly?
+
+  iabbrev re return
+  iabbrev return MÖÖÖÖÖP
+  iabbrev reutrn MÖÖÖÖÖP
+  iabbrev retrun MÖÖÖÖÖP
+
+" }}}
+
+" Functions --------------- {{{
+
+  function! NyanMe()
+    hi NyanFur             guifg=#BBBBBB
+    hi NyanPoptartEdge     guifg=#ffd0ac
+    hi NyanPoptartFrosting guifg=#fd3699 guibg=#fe98ff
+    hi NyanRainbow1        guifg=#6831f8
+    hi NyanRainbow2        guifg=#0099fc
+    hi NyanRainbow3        guifg=#3cfa04
+    hi NyanRainbow4        guifg=#fdfe00
+    hi NyanRainbow5        guifg=#fc9d00
+    hi NyanRainbow6        guifg=#fe0000
+
+
+    echohl NyanRainbow1
+    echon "≈"
+    echohl NyanRainbow2
+    echon "≋"
+    echohl NyanRainbow3
+    echon "≈"
+    echohl NyanRainbow4
+    echon "≋"
+    echohl NyanRainbow5
+    echon "≈"
+    echohl NyanRainbow6
+    echon "≋"
+    echohl NyanRainbow1
+    echon "≈"
+    echohl NyanRainbow2
+    echon "≋"
+    echohl NyanRainbow3
+    echon "≈"
+    echohl NyanRainbow4
+    echon "≋"
+    echohl NyanRainbow5
+    echon "≈"
+    echohl NyanRainbow6
+    echon "≋"
+    echohl None
+    echo ""
+
+    echohl NyanRainbow1
+    echon "≈"
+    echohl NyanRainbow2
+    echon "≋"
+    echohl NyanRainbow3
+    echon "≈"
+    echohl NyanRainbow4
+    echon "≋"
+    echohl NyanRainbow5
+    echon "≈"
+    echohl NyanRainbow6
+    echon "≋"
+    echohl NyanRainbow1
+    echon "≈"
+    echohl NyanRainbow2
+    echon "≋"
+    echohl NyanRainbow3
+    echon "≈"
+    echohl NyanRainbow4
+    echon "≋"
+    echohl NyanRainbow5
+    echon "≈"
+    echohl NyanRainbow6
+    echon "≋"
+    echohl NyanFur
+    echon "╰"
+    echohl NyanPoptartEdge
+    echon "⟨"
+    echohl NyanPoptartFrosting
+    echon "⣮⣯⡿"
+    echohl NyanPoptartEdge
+    echon "⟩"
+    echohl NyanFur
+    echon "⩾^ω^⩽"
+    echohl None
+    echo ""
+
+    echohl NyanRainbow1
+    echon "≈"
+    echohl NyanRainbow2
+    echon "≋"
+    echohl NyanRainbow3
+    echon "≈"
+    echohl NyanRainbow4
+    echon "≋"
+    echohl NyanRainbow5
+    echon "≈"
+    echohl NyanRainbow6
+    echon "≋"
+    echohl NyanRainbow1
+    echon "≈"
+    echohl NyanRainbow2
+    echon "≋"
+    echohl NyanRainbow3
+    echon "≈"
+    echohl NyanRainbow4
+    echon "≋"
+    echohl NyanRainbow5
+    echon "≈"
+    echohl NyanRainbow6
+    echon "≋"
+    echohl None
+    echon " "
+    echohl NyanFur
+    echon "”   ‟"
+    echohl None
+
+    sleep 2
+    echo " "
+    redraw
+    echo " "
+    echo " "
+    echo "Noms?"
+    redraw
+  endfunction
+  command! NyanMe call NyanMe()
+
+" }}}
