@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""
 "  __   __ __   __    __   ______   ______    "
-" /\ \ / //\ \ /\ "-./  \ /\  == \ /\  ___\   "
+" /\ \ / //\ \ /\  -./  \ /\  == \ /\  ___\   "
 " \ \ \'/ \ \ \\ \ \-./\ \\ \  __< \ \ \____  "
 "  \ \__|  \ \_\\ \_\ \ \_\\ \_\ \_\\ \_____\ "
 "   \/_/    \/_/ \/_/  \/_/ \/_/ /_/ \/_____/ "
@@ -63,7 +63,7 @@
   Bundle 'airblade/vim-gitgutter'
 
   " See these great indent lines?
-  Bundle 'Yggdroot/indentLine'
+  "Bundle 'Yggdroot/indentLine'
 
   " Easier visual selection
   Bundle 'terryma/vim-expand-region'
@@ -83,6 +83,9 @@
   " Wakatime time tracking
   Bundle 'wakatime/vim-wakatime'
 
+  " ir_black colorscheme
+  Bundle 'twerth/ir_black'
+
   " Re-enable filetype plugin indent
   filetype plugin indent on
 
@@ -100,7 +103,7 @@
 
     set list                                          " Display unprintable chars
 
-    set relativenumber
+    "set relativenumber
     set scrolljump=5                                  " Minimal number of screen lines to scroll
     set scrolloff=3                                   " Minimal number of screen lines to keep above and below
 
@@ -150,7 +153,7 @@
 
     set cursorline                                    " Highlight cursorline!
     set ruler                                         " Always show current position
-    set colorcolumn=81
+    "set colorcolumn=81
     set virtualedit=onemore                           " Allow for cursor beyond last character
 
   " }}}
@@ -335,11 +338,11 @@
 
   " General --------------- {{{
 
-    augroup autoload_vimrc
-      au!
+    "augroup autoload_vimrc
+      "au!
       " automatically reload vimrc when it's saved
-      au BufWritePost $MYVIMRC so $MYVIMRC
-    augroup END
+      "au BufWritePost $MYVIMRC so $MYVIMRC
+    "augroup END
 
     augroup highlight_nbsp
       au!
@@ -353,11 +356,11 @@
       au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
     augroup END
 
-    augroup number_mode_switch
-      au!
-      autocmd InsertEnter * set number
-      autocmd InsertLeave * set relativenumber
-    augroup END
+    "augroup number_mode_switch
+    "au!
+      "autocmd InsertEnter * set number
+      "autocmd InsertLeave * set relativenumber
+    "augroup END
 
   " }}}
 
