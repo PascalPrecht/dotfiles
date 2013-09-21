@@ -64,13 +64,10 @@
 
    "Bundle 'bling/vim-airline'
 
-   Bundle 'kien/ctrlp.vim'
+   Bundle 'itchyny/lightline.vim'
 
-   " It's all about surrounding, yo!
-   Bundle 'tpope/vim-surround'
-
-   " Snippets!
-   Bundle 'msanders/snipmate.vim'
+   " Vim-like navigation between vim and tmux
+   Bundle 'christoomey/vim-tmux-navigator'
 
    " Re-enable filetype plugin indent
    filetype plugin indent on
@@ -81,7 +78,7 @@
 
    " General ----------------- {{{
 
-     set guioptions-=T                                 " Turn off menubar
+     set guioptions-=TlrLR                             " Turn off menubar and scollbars
      set t_Co=256                                      " Terminal colors count
 
       if &term =~ '256color'
@@ -214,8 +211,9 @@
 
    " Airline ----------------- {{{
 
-    "let g:airline_theme='badwolf'
-    "let g:airline_detect_paste=1
+    "let g:airline_theme = 'luna'
+    "let g:airline_detect_paste = 1
+    "let g:airline_powerline_fonts = 1
 
    " }}}
 
