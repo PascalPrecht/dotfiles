@@ -93,7 +93,7 @@
 
      "set list                                          " Display unprintable chars
 
-     set relativenumber
+     "set relativenumber
      set scrolljump=5                                  " Minimal number of screen lines to scroll
      set scrolloff=3                                   " Minimal number of screen lines to keep above and below
 
@@ -378,11 +378,11 @@
        au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
      augroup END
 
-     augroup number_mode_switch
-       au!
-       autocmd InsertEnter * set number
-       autocmd InsertLeave * set relativenumber
-     augroup END
+     "augroup number_mode_switch
+       "au!
+       "autocmd InsertEnter * set number
+       "autocmd InsertLeave * set relativenumber
+     "augroup END
 
    " }}}
 
