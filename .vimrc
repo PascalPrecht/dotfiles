@@ -378,11 +378,11 @@
        au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
      augroup END
 
-     augroup number_mode_switch
-       au!
-       autocmd InsertEnter * set number
-       autocmd InsertLeave * set relativenumber
-     augroup END
+     "augroup number_mode_switch
+       "au!
+       "autocmd InsertEnter * set number
+       "autocmd InsertLeave * set relativenumber
+     "augroup END
 
    " }}}
 
