@@ -93,7 +93,7 @@
 
      "set list                                          " Display unprintable chars
 
-     set relativenumber
+     "set relativenumber
      set scrolljump=5                                  " Minimal number of screen lines to scroll
      set scrolloff=3                                   " Minimal number of screen lines to keep above and below
 
