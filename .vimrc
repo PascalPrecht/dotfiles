@@ -40,6 +40,7 @@
     set noswapfile                  " Don't pollute my hard drive, even temporary
     set lazyredraw
 
+    set cryptmethod=blowfish        " Use strong blowfish algorithm when encrypting files
  " }}}
 
  " Vundle startup ----------------- {{{
