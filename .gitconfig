@@ -1,11 +1,38 @@
 [user]
   name = Pascal Precht
   email = pascal.precht@googlemail.com
+[alias]
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
+  s = status -s
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+  p = !"git pull; git submodule foreach git pull origin master"
+  c = clone --recursive
+  ca = !"git add -A && git commit -v"
+  go = checkout -B
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+[apply]
+  whitespace = fix
 [core]
   editor = vim
+  whitespace = space-before-tab, indent-with-non-tab, trailing-space
 [credential]
   helper = osxkeychain
 [color]
-  ui = true
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [merge]
   tool = vimdiff
+  log = true
+[push]
+  default = matching

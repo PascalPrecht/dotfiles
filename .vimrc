@@ -458,7 +458,8 @@
  " }}}
 
  " Abbreviations --------------- {{{
-
+  cabbrev qalL qall
+  cabbrev Qall qall
  " }}}
 
  " Functions --------------- {{{
