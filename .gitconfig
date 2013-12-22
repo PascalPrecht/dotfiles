@@ -9,3 +9,4 @@
   ui = true
 [merge]
   tool = vimdiff
+  log = true

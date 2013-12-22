@@ -39,6 +39,7 @@
 
     set noswapfile                  " Don't pollute my hard drive, even temporary
     set lazyredraw
+		set whichwrap=b,s
 
  " }}}
 
@@ -61,10 +62,6 @@
 
    " .editorconfig
    Bundle 'editorconfig/editorconfig-vim'
-
-   "Bundle 'bling/vim-airline'
-
-   Bundle 'itchyny/lightline.vim'
 
    " Vim-like navigation between vim and tmux
    Bundle 'christoomey/vim-tmux-navigator'
@@ -93,7 +90,7 @@
 
      "set list                                          " Display unprintable chars
 
-     "set relativenumber
+     set relativenumber
      set scrolljump=5                                  " Minimal number of screen lines to scroll
      set scrolloff=3                                   " Minimal number of screen lines to keep above and below
 
@@ -124,9 +121,9 @@
    " }}}
 
    " Statusline ----------------- {{{
-   "
-   " Nothing to see here yet, using Statline plugin currently.
-   "
+
+    set statusline=%f\ %m\ %r%=\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
+
    " }}}
 
    " Commandline ----------------- {{{
@@ -143,7 +140,7 @@
 
      set cursorline                                    " Highlight cursorline!
      set ruler                                         " Always show current position
-     set colorcolumn=81
+     "set colorcolumn=81
      set virtualedit=onemore                           " Allow for cursor beyond last character
 
    " }}}
@@ -242,8 +239,6 @@
      nnoremap  <leader>ev :vsp $MYVIMRC<cr>
      " Source .vimrc explitly
      nnoremap  <leader>sv :source $MYVIMRC<cr>
-     " Nyan!
-     nnoremap <leader>nm :NyanMe<cr>
 
    " }}}
 
@@ -301,6 +296,7 @@
      nnoremap j gj
      nnoremap k gk
      nnoremap ; :
+     nnoremap : ;
 
      " Stronger h and l
      nnoremap H 0
@@ -453,121 +449,5 @@
  " }}}
 
  " Functions --------------- {{{
-
-   function! NyanMe()
-     hi NyanFur             guifg=#BBBBBB
-     hi NyanPoptartEdge     guifg=#ffd0ac
-     hi NyanPoptartFrosting guifg=#fd3699 guibg=#fe98ff
-     hi NyanRainbow1        guifg=#6831f8
-     hi NyanRainbow2        guifg=#0099fc
-     hi NyanRainbow3        guifg=#3cfa04
-     hi NyanRainbow4        guifg=#fdfe00
-     hi NyanRainbow5        guifg=#fc9d00
-     hi NyanRainbow6        guifg=#fe0000
-
-
-     echohl NyanRainbow1
-     echon "≈"
-     echohl NyanRainbow2
-     echon "≋"
-     echohl NyanRainbow3
-     echon "≈"
-     echohl NyanRainbow4
-     echon "≋"
-     echohl NyanRainbow5
-     echon "≈"
-     echohl NyanRainbow6
-     echon "≋"
-     echohl NyanRainbow1
-     echon "≈"
-     echohl NyanRainbow2
-     echon "≋"
-     echohl NyanRainbow3
-     echon "≈"
-     echohl NyanRainbow4
-     echon "≋"
-     echohl NyanRainbow5
-     echon "≈"
-     echohl NyanRainbow6
-     echon "≋"
-     echohl None
-     echo ""
-
-     echohl NyanRainbow1
-     echon "≈"
-     echohl NyanRainbow2
-     echon "≋"
-     echohl NyanRainbow3
-     echon "≈"
-     echohl NyanRainbow4
-     echon "≋"
-     echohl NyanRainbow5
-     echon "≈"
-     echohl NyanRainbow6
-     echon "≋"
-     echohl NyanRainbow1
-     echon "≈"
-     echohl NyanRainbow2
-     echon "≋"
-     echohl NyanRainbow3
-     echon "≈"
-     echohl NyanRainbow4
-     echon "≋"
-     echohl NyanRainbow5
-     echon "≈"
-     echohl NyanRainbow6
-     echon "≋"
-     echohl NyanFur
-     echon "╰"
-     echohl NyanPoptartEdge
-     echon "⟨"
-     echohl NyanPoptartFrosting
-     echon "⣮⣯⡿"
-     echohl NyanPoptartEdge
-     echon "⟩"
-     echohl NyanFur
-     echon "⩾^ω^⩽"
-     echohl None
-     echo ""
-
-     echohl NyanRainbow1
-     echon "≈"
-     echohl NyanRainbow2
-     echon "≋"
-     echohl NyanRainbow3
-     echon "≈"
-     echohl NyanRainbow4
-     echon "≋"
-     echohl NyanRainbow5
-     echon "≈"
-     echohl NyanRainbow6
-     echon "≋"
-     echohl NyanRainbow1
-     echon "≈"
-     echohl NyanRainbow2
-     echon "≋"
-     echohl NyanRainbow3
-     echon "≈"
-     echohl NyanRainbow4
-     echon "≋"
-     echohl NyanRainbow5
-     echon "≈"
-     echohl NyanRainbow6
-     echon "≋"
-     echohl None
-     echon " "
-     echohl NyanFur
-     echon "”   ‟"
-     echohl None
-
-     sleep 2
-     echo " "
-     redraw
-     echo " "
-     echo " "
-     echo "Noms?"
-     redraw
-   endfunction
-   command! NyanMe call NyanMe()
 
  " }}}
