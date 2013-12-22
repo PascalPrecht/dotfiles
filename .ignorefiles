@@ -1,6 +1,7 @@
 \.ignorefiles
 \.git
 \.itermcolors
+\.terminalcolors
 \.DS_Store
 \.gitignore
 README\.md
