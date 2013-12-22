@@ -41,6 +41,7 @@
     set lazyredraw
 		set whichwrap=b,s
 
+    set cryptmethod=blowfish        " Use strong blowfish algorithm when encrypting files
  " }}}
 
  " Vundle startup ----------------- {{{
@@ -65,6 +66,8 @@
 
    " Vim-like navigation between vim and tmux
    Bundle 'christoomey/vim-tmux-navigator'
+
+   Bundle 'mikewest/vimroom'
 
    " Re-enable filetype plugin indent
    filetype plugin indent on
@@ -279,6 +282,16 @@
      " Surround current word with single quotes
      nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
+     " Disable arrow keys in command mode
+     cnoremap <Up> <nop>
+     cnoremap <Down> <nop>
+
+     " Use vim way instead
+     cnoremap <C-p> <Up>
+     cnoremap <C-n> <Down>
+
+     " easy expansion
+     cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
    " }}}
 
    " Movement ----------------- {{{
@@ -445,7 +458,8 @@
  " }}}
 
  " Abbreviations --------------- {{{
-
+  cabbrev qalL qall
+  cabbrev Qall qall
  " }}}
 
  " Functions --------------- {{{
