@@ -66,7 +66,7 @@ colorscheme badwolf
 syntax on
 
 "set list
-set relativenumber
+"set relativenumber
 
 set scrolljump=5
 set scrolloff=3
@@ -92,7 +92,7 @@ set statusline=%f\ %m\ %r%=\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
 
 set showcmd
 set showmode                                      " Show current mode on commandline
-set cmdheight=3                                   " The commandline height
+set cmdheight=2                                   " The commandline height
 set shortmess+=filmnrxoOtT                        " Short messaging in commandline
 set laststatus=2                                  " Windows always will have a status line
 
@@ -209,6 +209,8 @@ inoremap  <up> <nop>
 inoremap  <down> <nop>
 inoremap  <left> <nop>
 inoremap  <right> <nop>
+
+nnoremap <leader>v :vsp<cr>
 
 nnoremap j gj
 nnoremap k gk
