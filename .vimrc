@@ -47,6 +47,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'mikewest/vimroom'
+Bundle 'kien/ctrlp.vim'
+
 filetype plugin indent on
 
 set guioptions=TlrLR
@@ -59,11 +61,12 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+set background=dark
 colorscheme badwolf
 syntax on
 
 "set list
-"set relativenumber
+set relativenumber
 
 set scrolljump=5
 set scrolloff=3
@@ -75,6 +78,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest  " compiled object files
 set wildignore+=*.sw?                             " Vim swap files
 set wildignore+=*.DS_Store                        " OSX bullshit
+set wildignore+=*.zip                             " zip
 
 set showmatch                                     " Show matching brackets (Damn this is so cool!)
 set matchtime=3
@@ -94,7 +98,10 @@ set laststatus=2                                  " Windows always will have a s
 
 set cursorline                                    " Highlight cursorline!
 set ruler                                         " Always show current position
-"set colorcolumn=81
+
+highlight ColorColumn ctermbg=blue
+call matchadd('ColorColumn', '\%81v', 100)
+
 set virtualedit=onemore                           " Allow for cursor beyond last character
 
 set foldlevelstart=0
@@ -130,9 +137,18 @@ nnoremap <leader>bl :BundleList<cr>
 nnoremap <leader>bc :BundleClean<cr>
 nnoremap <leader>bs :BundleSearch<space>
 
+" Statline Settings
 let g:statline_no_encoding_string = '[???]'
 let g:statline_filename_relative = 1
 let g:statline_show_charcode = 1
+
+" CtrlP Settings
+let g:ctrlp_switch_buffer = 'E'
+let g:ctrlp_tabpage_position = 'c'
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_working_path_mode = 'rc'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_open_multiple_files = '2vjr'
 
 " Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
@@ -203,6 +219,10 @@ nnoremap : ;
 nnoremap H 0
 nnoremap L $
 
+" Always use virtual block mode
+nnoremap v  <C-V>
+nnoremap <C-V>  v
+
 " faster movement
 nmap J 5j
 nmap K 5k
@@ -232,10 +252,29 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.2)<cr>
+nnoremap <silent> N   N:call HLNext(0.2)<cr>
+
+function! HLNext (blinktime)
+    highlight WhiteOnRed ctermfg=white ctermbg=red
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
 " in next parens
 onoremap in( :<c-u>normal! f(vi(<cr>
 " on a function name in the current line
 onoremap F :<c-u>normal! 0f(hviw<cr>
+
+cabbrev qalL qall
+cabbrev Qall qall
 
 "augroup autoload_vimrc
 "au!
@@ -311,6 +350,3 @@ augroup filetype_coffeescript
   " Line-wise comments
   au Filetype coffeescript nnoremap <buffer> <localleader>C I#<esc>
 augroup END
-
-cabbrev qalL qall
-cabbrev Qall qall
