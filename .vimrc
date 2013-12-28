@@ -48,6 +48,7 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'mikewest/vimroom'
 Bundle 'kien/ctrlp.vim'
+Bundle 'sjl/badwolf'
 Bundle 'tpope/vim-unimpaired'
 
 filetype plugin indent on

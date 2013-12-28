@@ -1,6 +1,6 @@
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/Library/Haskell/bin:$PATH"
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
