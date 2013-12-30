@@ -47,9 +47,12 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'mikewest/vimroom'
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
 Bundle 'sjl/badwolf'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'junegunn/vim-emoji'
 
 filetype plugin indent on
 
@@ -133,6 +136,7 @@ set title
 "set lines=999                                     " Open the tallest window possible
 "set columns=9999                                  " Open the widest window possible
 
+" Bundle bindings
 nnoremap <leader>bi :BundleInstall<cr>
 nnoremap <leader>bi! :BundleInstall!<cr>
 nnoremap <leader>bl :BundleList<cr>
@@ -151,6 +155,13 @@ let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_open_multiple_files = '2vjr'
+
+" Unite Settings
+let g:unite_enable_start_insert = 1
+
+nnoremap <leader>f :<C-u>Unite -start-insert file_rec<cr>
+nnoremap <silent> <leader>b :<C-u>Unite buffer file_mru bookmark<CR>
+nnoremap <leader>m :<C-u>Unite file_mru<CR>
 
 " Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
@@ -280,11 +291,11 @@ onoremap F :<c-u>normal! 0f(hviw<cr>
 cabbrev qalL qall
 cabbrev Qall qall
 
-"augroup autoload_vimrc
-"au!
-" automatically reload vimrc when it's saved
-"au BufWritePost $MYVIMRC so $MYVIMRC
-"augroup END
+augroup autoload_vimrc
+  au!
+  " automatically reload vimrc when it's saved
+  au BufWritePost $MYVIMRC so $MYVIMRC
+augroup END
 
 augroup highlight_nbsp
   au!
@@ -297,12 +308,6 @@ augroup trailing_chars
   au InsertEnter * :set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
   au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
 augroup END
-
-"augroup number_mode_switch
-"au!
-"autocmd InsertEnter * set number
-"autocmd InsertLeave * set relativenumber
-"augroup END
 
 augroup filetype_mapping
   au!
