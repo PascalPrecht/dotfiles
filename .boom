@@ -1,9 +1,49 @@
 {
   "lists": [
     {
+      "links": [
+        {
+          "forgifme": "http://forgif.me/"
+        },
+        {
+          "fb": "https://www.facebook.com/"
+        },
+        {
+          "gh": "https://github.com/"
+        },
+        {
+          "hn": "https://news.ycombinator.com/"
+        },
+        {
+          "yt": "http://www.youtube.com/"
+        },
+        {
+          "ama": "http://www.amazon.de/"
+        },
+        {
+          "omfgdogs": "http://www.omfgdogs.com/"
+        }
+      ]
+    },
+    {
       "gifs": [
         {
           "strike": "http://bukk.it/yes.gif"
+        },
+        {
+          "horse-haters": "http://static.fjcdn.com/gifs/haters+gonna+hate+horse_660b7b_3198903.gif"
+        },
+        {
+          "not-bad": "http://replygif.net/i/1082.gif"
+        },
+        {
+          "trust-friend": "https://lh6.googleusercontent.com/-_ZF4Y2VMHts/UsGGO8ydgzI/AAAAAAAATOU/7wyQDvXAH8s/w506-h323/aeN4ZbO_460sa.gif"
+        },
+        {
+          "feierabend": "http://forgif.me/system/image/6260/image.gif"
+        },
+        {
+          "watch": "https://lh6.googleusercontent.com/-sq_-MNam4Eg/UsgatUEMAXI/AAAAAAABmZQ/vnxJ8ni0Njw/w506-h285/399.gif"
         }
       ]
     }
