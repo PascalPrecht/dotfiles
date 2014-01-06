@@ -43,7 +43,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'mikewest/vimroom'
@@ -53,6 +52,8 @@ Bundle 'Shougo/unite.vim'
 Bundle 'sjl/badwolf'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'junegunn/vim-emoji'
+Bundle 'tpope/vim-commentary'
+Bundle 'mileszs/ack.vim'
 
 filetype plugin indent on
 
@@ -159,7 +160,7 @@ let g:ctrlp_open_multiple_files = '2vjr'
 " Unite Settings
 let g:unite_enable_start_insert = 1
 
-nnoremap <leader>f :<C-u>Unite -start-insert file_rec<cr>
+nnoremap <c-p> :<C-u>Unite -start-insert file_rec<cr>
 nnoremap <silent> <leader>b :<C-u>Unite buffer file_mru bookmark<CR>
 nnoremap <leader>m :<C-u>Unite file_mru<CR>
 
