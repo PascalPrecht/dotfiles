@@ -45,20 +45,19 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'mikewest/vimroom'
-"Bundle 'kien/ctrlp.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
 Bundle 'sjl/badwolf'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'junegunn/vim-emoji'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
 Bundle 'mileszs/ack.vim'
+Bundle 'koron/nyancat-vim'
 
 filetype plugin indent on
 
 set guioptions=TlrLR
 set t_Co=256
+set shell=bash
 
 if &term =~ '256color'
   " Disable Background Color Erase (BCE) so that color schemes
@@ -71,8 +70,9 @@ set background=dark
 colorscheme badwolf
 syntax on
 
-"set list
-"set relativenumber
+set list
+set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail
+set relativenumber
 
 set scrolljump=5
 set scrolloff=3
@@ -131,86 +131,38 @@ set noerrorbells
 set visualbell
 set t_vb=
 
+" set winwidth=84
+" set winheight=5
+" set winminheight=5
+" set winheight=999
+
 set splitbelow                                    " Split current window below
 set splitright                                    " Split current window right
 set title
-"set lines=999                                     " Open the tallest window possible
-"set columns=9999                                  " Open the widest window possible
 
 " Bundle bindings
 nnoremap <leader>bi :BundleInstall<cr>
-nnoremap <leader>bi! :BundleInstall!<cr>
 nnoremap <leader>bl :BundleList<cr>
 nnoremap <leader>bc :BundleClean<cr>
-nnoremap <leader>bs :BundleSearch<space>
-
-" Statline Settings
-let g:statline_no_encoding_string = '[???]'
-let g:statline_filename_relative = 1
-let g:statline_show_charcode = 1
-
-" CtrlP Settings
-let g:ctrlp_switch_buffer = 'E'
-let g:ctrlp_tabpage_position = 'c'
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_working_path_mode = 'rc'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_open_multiple_files = '2vjr'
-
-" Unite Settings
-let g:unite_enable_start_insert = 1
-
-nnoremap <c-p> :<C-u>Unite -start-insert file_rec<cr>
-nnoremap <silent> <leader>b :<C-u>Unite buffer file_mru bookmark<CR>
-nnoremap <leader>m :<C-u>Unite file_mru<CR>
-
 " Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
 " Source .vimrc explitly
 nnoremap  <leader>sv :source $MYVIMRC<cr>
-
-" kill vim
-map <silent> <leader>k :qall!<cr>
-
-" Disabling escape key. It's too far away!
-inoremap  <esc> <nop>
-" `jk` is much better :)
-inoremap  jk <esc>
-
 " Ex-mode is shitty
 nnoremap  Q <nop>
-
 " Fast saving
 nnoremap <leader>w :w!<cr>
-
-" Remove highlighted search
-nnoremap <leader><space> :noh<cr>
-
 " e2e matching
 nnoremap <tab> %
 vnoremap <tab> %
-
 " Folding
 nnoremap <Space> za
 vnoremap <Space> za
-
 " Remove trailing whitespaces
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
-
-" Surround current word with double quotes
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-
-" Surround current word with single quotes
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-
-" Disable arrow keys in command mode
-cnoremap <Up> <nop>
-cnoremap <Down> <nop>
-
 " Use vim way instead
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
-
 " easy expansion
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 
@@ -223,21 +175,19 @@ inoremap  <up> <nop>
 inoremap  <down> <nop>
 inoremap  <left> <nop>
 inoremap  <right> <nop>
-
-nnoremap <leader>v :vsp<cr>
+" insert equals sign for faster assignments
+inoremap <c-l> <space>=<space>
+" I write a lot of unit tests, is this a very handy mapping
+" when writing it() blocks
+inoremap <c-f> function () {<cr>});<esc>O
+" Disable arrow keys in command mode
+cnoremap <Up> <nop>
+cnoremap <Down> <nop>
 
 nnoremap j gj
 nnoremap k gk
-nnoremap ; :
-nnoremap : ;
-
-" Stronger h and l
-nnoremap H 0
-nnoremap L $
-
-" Always use virtual block mode
-nnoremap v  <C-V>
-nnoremap <C-V>  v
+" nnoremap ; :
+" nnoremap : ;
 
 " faster movement
 nmap J 5j
@@ -245,12 +195,10 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
-" quick pairs
-inoremap <leader>' ''<esc>i
-inoremap <leader>" ""<esc>
-inoremap <leader>( ()<esc>i
-inoremap <leader>[ []<esc>i
-
+" Disabling escape key. It's too far away!
+inoremap  <esc> <nop>
+" `jk` is much better :)
+inoremap  jk <esc>
 " Search for non breaking spaces (ascii 160) Thank you Stø!
 nnoremap <leader>hw :/\%xa0<cr>
 
@@ -262,6 +210,7 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
+nnoremap <leader>vn :30vsp ~/Dropbox/notes/vim-notes.txt<cr>
 " Use just CTRL instead of CTRL-W to switch between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -271,6 +220,11 @@ nnoremap <C-l> <C-w>l
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
+
+cnoreabbrev q qall!
+cnoreabbrev Q qall!
+cnoreabbrev qalL qall!
+cnoreabbrev Qall qall!
 
 function! HLNext (blinktime)
     highlight WhiteOnRed ctermfg=white ctermbg=red
@@ -284,14 +238,6 @@ function! HLNext (blinktime)
     redraw
 endfunction
 
-" in next parens
-onoremap in( :<c-u>normal! f(vi(<cr>
-" on a function name in the current line
-onoremap F :<c-u>normal! 0f(hviw<cr>
-
-cabbrev qalL qall
-cabbrev Qall qall
-
 augroup autoload_vimrc
   au!
   " automatically reload vimrc when it's saved
@@ -302,61 +248,4 @@ augroup highlight_nbsp
   au!
   au BufEnter * highlight NonBreakingSpace guibg=red
   au BufEnter * :match NonBreakingSpace /\%xa0/
-augroup END
-
-augroup trailing_chars
-  au!
-  au InsertEnter * :set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
-  au InsertLeave * :set listchars+=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail:•
-augroup END
-
-augroup filetype_mapping
-  au!
-  au BufEnter,BufNewFile,BufRead *.ejs set filetype=html
-  au BufEnter,BufNewFile,BufRead *.less set filetype=css
-augroup END
-
-augroup filetype_vim
-  au!
-  au FileType vim setlocal foldmethod=marker
-  " Line-wise comments
-  au Filetype vim nnoremap <buffer> <localleader>; I"<esc>A<esc>
-augroup END
-
-augroup filetype_html
-  au!
-  " Line-wise comments
-  au Filetype html nnoremap <buffer> <localleader>C I<!--<esc>A--><esc>
-  " Block-wite comments
-  au Filetype html vnoremap <buffer> <localleader>C <esc>`<I<!--<esc>`>A--><esc>
-augroup END
-
-augroup filetype_css
-  au!
-  " Line-wise comments
-  au Filetype css nnoremap <buffer> <localleader>C I/*<esc>A*/<esc>
-  " Block-wise comments
-  au Filetype css vnoremap <buffer> <localleader>C <esc>`<I/*<esc>`>A*/<esc>
-augroup END
-
-augroup filetype_javascript
-  au!
-  " Line-wise comments
-  au Filetype javascript nnoremap <buffer> <localleader>C I//<esc>
-  " block-wise comments
-  au Filetype javascript vnoremap <buffer> <localleader>C <esc>`<I/*<esc>`>A*/<esc>
-augroup END
-
-augroup filetype_go
-  au!
-  " Line-wise comments
-  au Filetype go nnoremap <buffer> <localleader>C I/*<esc>A*/<esc>
-  " block-wise comments
-  au Filetype go vnoremap <buffer> <localleader>C <esc>`<I/*<esc>`>A*/<esc>
-augroup END
-
-augroup filetype_coffeescript
-  au!
-  " Line-wise comments
-  au Filetype coffeescript nnoremap <buffer> <localleader>C I#<esc>
 augroup END
