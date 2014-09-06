@@ -5,19 +5,24 @@
   l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
   s = status -s
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
   p = !"git pull; git submodule foreach git pull origin master"
   c = clone --recursive
   ca = !"git add -A && git commit -v"
-  go = checkout -B
   tags = tag -l
   branches = branch -a
   remotes = remote -v
-[apply]
-  whitespace = fix
+  co = checkout
+  cob = checkout -b
+  ec = config --global -e
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = !git add -u && git commit -m 'WIP SAVEPOINT'
+  amend = commit -a --amend
+  undo = reset HEAD~1 --mixed
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 [core]
   editor = vim
-  whitespace = space-before-tab, indent-with-non-tab, trailing-space
+  autoctrl = input
+  whitespace = space-before-tab, trailing-space
 [credential]
   helper = osxkeychain
 [color]
@@ -34,5 +39,6 @@
 [merge]
   tool = vimdiff
   log = true
+	conflictstyle = diff3
 [push]
   default = matching
