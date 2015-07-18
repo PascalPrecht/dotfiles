@@ -14,6 +14,8 @@ let $JS_CMD = 'node'
 let mapleader = ','
 let maplocalleader = ','
 
+let g:netrw_liststyle=3
+
 set nocompatible                " Don't care about Vi-compatibility
 scriptencoding utf-8            " Character encoding
 set encoding=utf8
@@ -21,6 +23,8 @@ set mouse=                      " Disabling mouse support
 set modelines=0
 set backspace=indent,eol,start  " Backspace for dummies?
 set autoread                    " Autoread a file when it's changed from outside
+
+set complete+=kspell
 
 set history=1000                " Remember ALL THE commands!
 set undolevels=1000             " Do ALL THE undo's!
@@ -37,23 +41,23 @@ set whichwrap=b,s
 
 set cryptmethod=blowfish        " Use strong blowfish algorithm when encrypting files
 
-filetype off
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'sjl/badwolf'
+Plug 'noahfrederick/vim-hemisu'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/emmet-vim'
 
-Bundle 'gmarik/vundle'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'sjl/badwolf'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
-Bundle 'mileszs/ack.vim'
-Bundle 'koron/nyancat-vim'
-
-filetype plugin indent on
+call plug#end()
 
 set guioptions=TlrLR
 set t_Co=256
@@ -140,10 +144,21 @@ set splitbelow                                    " Split current window below
 set splitright                                    " Split current window right
 set title
 
-" Bundle bindings
-nnoremap <leader>bi :BundleInstall<cr>
-nnoremap <leader>bl :BundleList<cr>
-nnoremap <leader>bc :BundleClean<cr>
+" Syntastic
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_checkers = []
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs=1
+
+" Ctrl p
+let g:ctrlp_map = ',t'
+nnoremap <silent> ,t :CtrlP<cr>
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_open_new_file = 'v'
+let g:ctrlp_by_filename = 1
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_custom_ignore = {'dir': 'dist'}
+
 " Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
 " Source .vimrc explitly
@@ -217,6 +232,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap <leader><space> :Goyo<cr>
+
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
@@ -225,6 +242,35 @@ cnoreabbrev q qall!
 cnoreabbrev Q qall!
 cnoreabbrev qalL qall!
 cnoreabbrev Qall qall!
+
+inoreabbrev zipyy zippy
+
+" Motion for "next/last object". For example, "din(" would go to the next "()" pair
+" and delete its contents.
+ 
+onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+ 
+onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+ 
+function! s:NextTextObject(motion, dir)
+  let c = nr2char(getchar())
+ 
+  if c ==# "b"
+      let c = "("
+  elseif c ==# "B"
+      let c = "{"
+  elseif c ==# "d"
+      let c = "["
+  endif
+ 
+  exe "normal! ".a:dir.c."v".a:motion.c
+endfunction
 
 function! HLNext (blinktime)
     highlight WhiteOnRed ctermfg=white ctermbg=red
@@ -238,6 +284,12 @@ function! HLNext (blinktime)
     redraw
 endfunction
 
+augroup spell_check
+  au!
+  au BufRead,BufNewFile *.md setlocal spell
+  au FileType gitcommit setlocal spell
+augroup END
+
 augroup autoload_vimrc
   au!
   " automatically reload vimrc when it's saved
@@ -248,4 +300,9 @@ augroup highlight_nbsp
   au!
   au BufEnter * highlight NonBreakingSpace guibg=red
   au BufEnter * :match NonBreakingSpace /\%xa0/
+augroup END
+
+augroup file_type
+  au!
+  au BufRead,BufNewFile *.es6 setfiletype javascript
 augroup END
