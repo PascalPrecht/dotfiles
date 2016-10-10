@@ -17,6 +17,10 @@ let maplocalleader = ','
 let g:netrw_liststyle=3
 
 set nocompatible                " Don't care about Vi-compatibility
+
+filetype plugin on
+runtime macros/matchit.vim      " Load matchit from $VIMRUNTIME
+
 scriptencoding utf-8            " Character encoding
 set encoding=utf8
 set mouse=                      " Disabling mouse support
@@ -41,6 +45,9 @@ set whichwrap=b,s
 
 set cryptmethod=blowfish        " Use strong blowfish algorithm when encrypting files
 
+set path+=**
+set tags=./tags,tags;$HOME
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'benmills/vimux'
@@ -56,6 +63,13 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
+Plug 'rizzatti/dash.vim'
+Plug 'junegunn/vim-xmark', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
 call plug#end()
 
@@ -71,12 +85,12 @@ if &term =~ '256color'
 endif
 
 set background=dark
-colorscheme badwolf
+colorscheme tomorrow-night
 syntax on
 
-set list
+" set list
 set listchars-=nbsp:¬,eol:¶,tab:>-,extends:»,precedes:«,trail
-set relativenumber
+" set number
 
 set scrolljump=5
 set scrolloff=3
@@ -144,21 +158,6 @@ set splitbelow                                    " Split current window below
 set splitright                                    " Split current window right
 set title
 
-" Syntastic
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_html_checkers = []
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs=1
-
-" Ctrl p
-let g:ctrlp_map = ',t'
-nnoremap <silent> ,t :CtrlP<cr>
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_open_new_file = 'v'
-let g:ctrlp_by_filename = 1
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_custom_ignore = {'dir': 'dist'}
-
 " Open up .vimrc quickly in a new buffer
 nnoremap  <leader>ev :vsp $MYVIMRC<cr>
 " Source .vimrc explitly
@@ -168,8 +167,8 @@ nnoremap  Q <nop>
 " Fast saving
 nnoremap <leader>w :w!<cr>
 " e2e matching
-nnoremap <tab> %
-vnoremap <tab> %
+" nnoremap <tab> %
+" vnoremap <tab> %
 " Folding
 nnoremap <Space> za
 vnoremap <Space> za
@@ -180,6 +179,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 " easy expansion
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
+nnoremap rr :e <expr> expand('%:p')
 
 " Disabling arrow keys in normal and insert mode
 nnoremap  <up> <nop>
@@ -237,6 +237,11 @@ nnoremap <leader><space> :Goyo<cr>
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
+
+nnoremap <leader>f :<C-u>Unite -start-insert file<cr>
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+noremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<cr>
 
 cnoreabbrev q qall!
 cnoreabbrev Q qall!
