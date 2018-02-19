@@ -10,15 +10,11 @@
 "                                             "
 """""""""""""""""""""""""""""""""""""""""""""""
 
-let $JS_CMD = 'node'
 let mapleader = ','
 let maplocalleader = ','
 
 let g:netrw_liststyle=3
 
-set nocompatible                " Don't care about Vi-compatibility
-
-filetype plugin on
 runtime macros/matchit.vim      " Load matchit from $VIMRUNTIME
 
 scriptencoding utf-8            " Character encoding
@@ -48,30 +44,23 @@ set cryptmethod=blowfish        " Use strong blowfish algorithm when encrypting 
 set path+=**
 set tags=./tags,tags;$HOME
 
-call plug#begin('~/.vim/plugged')
+packadd minpac
+call minpac#init()
 
-Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'sjl/badwolf'
-Plug 'noahfrederick/vim-hemisu'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'mattn/emmet-vim'
-Plug 'rizzatti/dash.vim'
-Plug 'junegunn/vim-xmark', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+call minpac#add('benmills/vimux')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('sjl/badwolf')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('junegunn/fzf')
+call minpac#add('mileszs/ack.vim')
+call minpac#add('editorconfig/editorconfig-vim')
+call minpac#add('leafgarland/typescript-vim')
 
-call plug#end()
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
 
 set guioptions=TlrLR
 set t_Co=256
@@ -232,16 +221,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <leader><space> :Goyo<cr>
+nnoremap <C-p> :<C-u>FZF<CR>
 
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
-
-nnoremap <leader>f :<C-u>Unite -start-insert file<cr>
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-noremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<cr>
 
 cnoreabbrev q qall!
 cnoreabbrev Q qall!
@@ -305,9 +289,4 @@ augroup highlight_nbsp
   au!
   au BufEnter * highlight NonBreakingSpace guibg=red
   au BufEnter * :match NonBreakingSpace /\%xa0/
-augroup END
-
-augroup file_type
-  au!
-  au BufRead,BufNewFile *.es6 setfiletype javascript
 augroup END
